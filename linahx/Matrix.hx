@@ -115,8 +115,7 @@ class Matrix {
 				for ( column in 0...columns ) {
 					
 					var otherRow = column;
-					var multiplication = data[row][column] * otherMatrix.data[otherRow][otherColumn];
-					sum += multiplication;
+					sum += data[row][column] * otherMatrix.data[otherRow][otherColumn];
 				}
 				resultMatrix.data[row][otherColumn] = sum;
 			}
