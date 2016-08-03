@@ -15,8 +15,11 @@ class Matrix {
 	
 	public var data:Vector<Vector<Float>>;
 
+	//
 	// create Matrix from one-dimensional array of floats.
+	//
 	public static function fromArray1( array:Array<Float> ):Matrix {
+		
 		var matrix = new Matrix( 1, array.length );
 		for ( column in 0...array.length ) {
 			matrix.data[0][column] = array[column];
@@ -24,7 +27,9 @@ class Matrix {
 		return matrix;
 	}
 	
+	//
 	// create Matrix from two-dimensional array of floats.
+	//
 	public static function fromArray2( array:Array<Array<Float>> ):Matrix {
 		
 		var rowsNumber = array.length;
@@ -41,13 +46,17 @@ class Matrix {
 		return matrix;
 	}
 	
+	//
 	// create Matrix from String that is loaded from a CSV file.
+	//
 	public static function fromCSV( csvString:String, columnSeparator:String, rowSeparator:String = CHARCODE_NEWLINE ):Matrix {
 		
 		return Matrix.fromString( csvString, columnSeparator, rowSeparator );
 	}
 	
+	//
 	// create Matrix from String. Matlab uses ' ' as separator for the column and ';' as separator for rows
+	//
 	public static function fromString( string:String, columnSeparator:String = " ", rowSeparator:String = ";" ):Matrix {
 		
 		string = StringTools.replace( string, CR, "" );
@@ -90,7 +99,9 @@ class Matrix {
 		}
 	}
 	
+	//
 	// create new matrix
+	//
 	public function new( rows:Int, columns:Int, ?defaultvalue:Float ) {
 		
 		this.rows = rows;
@@ -108,6 +119,9 @@ class Matrix {
 		}
 	}
 	
+	//
+	// get column number of a two-dimensional array, check if all rows have the same number of elements
+	//
 	static inline function getColumnNumber( array:Array<Array<Dynamic>>):Int {
 		
 		var columnsNumber = -1;
@@ -130,7 +144,9 @@ class Matrix {
 		return columnsNumber;
 	}
 	
+	//
 	// return a copy of the matrix
+	//
 	public function copy():Matrix {
 		
 		var matrixCopy = new Matrix( rows, columns );
@@ -142,7 +158,9 @@ class Matrix {
 		return matrixCopy;
 	}
 	
+	//
 	// dot product of this matrix and another one
+	//
 	public function dot( otherMatrix:Matrix ):Matrix {
 		
 		if ( columns != otherMatrix.rows ) {
@@ -167,7 +185,9 @@ class Matrix {
 		return resultMatrix;
 	}
 	
+	//
 	// elementwise multiplication of two matrices
+	//
 	public function multiply( otherMatrix:Matrix ):Matrix {
 		
 		if ( columns != otherMatrix.columns || rows != otherMatrix.rows ) {
@@ -183,6 +203,9 @@ class Matrix {
 		return resultMatrix;
 	}
 	
+	//
+	// return the size of the matrix as a matrix
+	//
 	public function size( ?dimension:Int ):Matrix {
 		
 		if ( dimension == null ) {
@@ -194,7 +217,9 @@ class Matrix {
 		}
 	}
 	
-	// sum function adds allt the elements in one direction together: dimension=0 -> columns  dimension=1 -> rows
+	//
+	// sum function adds all the elements in one direction together: dimension=0 -> columns  dimension=1 -> rows
+	//
 	public function sum( ?dimension:Int ):Matrix {
 		
 		if ( dimension == null ) {
@@ -210,7 +235,9 @@ class Matrix {
 		}
 	}
 	
+	//
 	// sum of the elements in every column
+	//
 	function sumColumns():Matrix {
 		
 		var sumMatrix = new Matrix( 1, columns );
@@ -224,7 +251,9 @@ class Matrix {
 		return sumMatrix;
 	}
 	
+	//
 	// sum of the elements in every row
+	//
 	function sumRows():Matrix {
 		
 		var sumMatrix = new Matrix( rows, 1 );
@@ -238,6 +267,9 @@ class Matrix {
 		return sumMatrix;
 	}
 	
+	//
+	// convert the matrix to a string
+	//
 	public function toString():String {
 		
 		var s = "[";
@@ -253,7 +285,9 @@ class Matrix {
 		return s;
 	}
 	
-	// create transposed matrix
+	//
+	// return transposed matrix
+	//
 	public function transpose():Matrix {
 		
 		var transposedColumns = rows;
