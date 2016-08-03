@@ -131,6 +131,47 @@ class Matrix {
 		return resultMatrix;
 	}
 	
+	public function sum( ?dimension:Int ):Matrix {
+		
+		if ( dimension == null ) {
+			if ( columns > 1 ) {
+				return sumColumns();
+			} else {
+				return sumRows();
+			}
+		} else if ( dimension == 0 ) {
+			return sumColumns();
+		} else {
+			return sumRows();
+		}
+	}
+	
+	function sumColumns():Matrix {
+		
+		var sumMatrix = new Matrix( 1, columns );
+		for ( column in 0...columns ) {
+			var sum = 0.0;
+			for ( row in 0...rows ) {
+				sum += data[row][column];
+			}
+			sumMatrix.data[0][column] = sum;
+		}
+		return sumMatrix;
+	}
+	
+	function sumRows():Matrix {
+		
+		var sumMatrix = new Matrix( rows, 1 );
+		for ( row in 0...rows ) {
+			var sum = 0.0;
+			for ( column in 0...columns ) {
+				sum += data[row][column];
+			}
+			sumMatrix.data[row][0] = sum;
+		}
+		return sumMatrix;
+	}
+	
 	public function toString():String {
 		
 		var s = "[";
