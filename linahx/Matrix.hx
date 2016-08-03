@@ -15,6 +15,32 @@ class Matrix {
 	
 	public var data:Vector<Vector<Float>>;
 
+	// create Matrix from one-dimensional array of floats.
+	public static function fromArray1( array:Array<Float> ):Matrix {
+		var matrix = new Matrix( 1, array.length );
+		for ( column in 0...array.length ) {
+			matrix.data[0][column] = array[column];
+		}
+		return matrix;
+	}
+	
+	// create Matrix from two-dimensional array of floats.
+	public static function fromArray2( array:Array<Array<Float>> ):Matrix {
+		
+		var rowsNumber = array.length;
+		var columnsNumber = getColumnNumber( array );
+		
+		var matrix = new Matrix( rowsNumber, columnsNumber );
+		for( row in 0...rowsNumber ) {
+			for ( column in 0...columnsNumber ) {
+				if( column < array[row].length ) {
+					matrix.data[row][column] = array[row][column];
+				}
+			}
+		}
+		return matrix;
+	}
+	
 	// create Matrix from String that is loaded from a CSV file.
 	public static function fromCSV( csvString:String, columnSeparator:String, rowSeparator:String = CHARCODE_NEWLINE ):Matrix {
 		
@@ -28,8 +54,6 @@ class Matrix {
 		
 		var stringMatrix = new Array<Array<String>>();
 		
-		var rowElementsNumber = -1;
-		
 		var lines = string.split( rowSeparator );
 		for( i in 0...lines.length ) {
 			lines[i] = StringTools.trim( lines[i] );
@@ -42,24 +66,13 @@ class Matrix {
 			var lineArray = lines[i].split( columnSeparator );
 			stringMatrix.push( lineArray );
 			
-			var currentRowElementsNumber = lineArray.length;
-			
-			if ( rowElementsNumber == -1 ) {
-				rowElementsNumber = currentRowElementsNumber;
-			} else {
-				if ( currentRowElementsNumber != rowElementsNumber ) {
-					trace( "Matrix.fromString Warning: Line " + i + " has a different number of elements." );
-					if ( currentRowElementsNumber > rowElementsNumber ) {
-						rowElementsNumber = currentRowElementsNumber;
-					}
-				}
-			}
-			//trace( "rowElementsNumber " + rowElementsNumber );
 		}
+		
+		var columnsNumber = getColumnNumber( stringMatrix );
 		
 		if( stringMatrix.length > 0 ) {
 			
-			var matrix = new Matrix( stringMatrix.length, rowElementsNumber );
+			var matrix = new Matrix( stringMatrix.length, columnsNumber );
 			var rows = stringMatrix.length;
 			var columns = stringMatrix[0].length;
 			
@@ -95,6 +108,29 @@ class Matrix {
 		}
 	}
 	
+	static inline function getColumnNumber( array:Array<Array<Dynamic>>):Int {
+		
+		var columnsNumber = -1;
+		
+		for( row in 0...array.length ) {
+			
+			var currentColumnNumber = array[row].length;
+			
+			if ( columnsNumber == -1 ) {
+				columnsNumber = currentColumnNumber;
+			} else {
+				if ( currentColumnNumber != columnsNumber ) {
+					trace( "Matrix.fromString Warning: Line " + row + " has a different number of elements." );
+					if ( currentColumnNumber > columnsNumber ) {
+						columnsNumber = currentColumnNumber;
+					}
+				}
+			}
+		}
+		return columnsNumber;
+	}
+	
+	// return a copy of the matrix
 	public function copy():Matrix {
 		
 		var matrixCopy = new Matrix( rows, columns );
@@ -145,6 +181,17 @@ class Matrix {
 			}
 		}
 		return resultMatrix;
+	}
+	
+	public function size( ?dimension:Int ):Matrix {
+		
+		if ( dimension == null ) {
+			return Matrix.fromArray1( [rows, columns] );
+		} else if ( dimension == 0 ) {
+			return Matrix.fromArray1( [ rows ] );
+		} else {
+			return Matrix.fromArray1( [ columns ] );
+		}
 	}
 	
 	// sum function adds allt the elements in one direction together: dimension=0 -> columns  dimension=1 -> rows

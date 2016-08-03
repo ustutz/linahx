@@ -42,6 +42,10 @@ class LA {
 		return matrix1.multiply( matrix2 );
 	}
 	
+	public static function size( matrix:Matrix, ?dimension ):Matrix {
+		return matrix.size( dimension );
+	}
+	
 	public static function sum( matrix:Matrix, ?dimension ):Matrix {
 		return matrix.sum( dimension );
 	}
