@@ -7,11 +7,68 @@ import haxe.ds.Vector;
  */
 class Matrix {
 	
+	static inline var CHARCODE_NEWLINE:String = String.fromCharCode(10);
+	static inline var CR:String = String.fromCharCode(13);
+	
 	public var rows:Int;
 	public var columns:Int;
 	
 	public var data:Vector<Vector<Float>>;
 
+	public static function fromCSV( csvString:String, columnSeparator:String, rowSeparator:String = CHARCODE_NEWLINE ):Matrix {
+		
+		return Matrix.fromString( csvString, columnSeparator, rowSeparator );
+	}
+	
+	// create Matrix from String. Matlab uses ',' as separator for the column and ';' as separator for rows
+	public static function fromString( string:String, columnSeparator:String = ",", rowSeparator:String = ";" ):Matrix {
+		
+		string = StringTools.replace( string, CR, "" );
+		
+		var stringMatrix = new Array<Array<String>>();
+		
+		var rowElementsNumber = -1;
+		
+		var lines = string.split( rowSeparator );
+		for( i in 0...lines.length ) {
+			var lineArray = lines[i].split( columnSeparator );
+			stringMatrix.push( lineArray );
+			
+			var currentRowElementsNumber = lineArray.length;
+			
+			if ( rowElementsNumber == -1 ) {
+				rowElementsNumber = currentRowElementsNumber;
+			} else {
+				if ( currentRowElementsNumber != rowElementsNumber ) {
+					trace( "Warning: Line " + i + " has a different number of elements." );
+					if ( currentRowElementsNumber > rowElementsNumber ) {
+						rowElementsNumber = currentRowElementsNumber;
+					}
+				}
+			}
+			//trace( "rowElementsNumber " + rowElementsNumber );
+		}
+		
+		if( stringMatrix.length > 0 ) {
+			
+			var matrix = new Matrix( stringMatrix.length, rowElementsNumber );
+			var rows = stringMatrix.length;
+			var columns = stringMatrix[0].length;
+			
+			var data = new Vector<Vector<Float>>( rows );
+			for ( row in 0...rows ) {
+				
+				for ( column in 0...stringMatrix[row].length ) {
+					matrix.data[row][column] = Std.parseFloat( stringMatrix[row][column] );
+				}
+			}
+			return matrix;
+			
+		} else {
+			return null;
+		}
+	}
+	
 	public function new( rows:Int, columns:Int, ?defaultvalue:Float ) {
 		
 		this.rows = rows;
@@ -56,7 +113,7 @@ class Matrix {
 				var sum = 0.0;
 				for ( column in 0...columns ) {
 					for ( otherRow in 0...otherMatrix.rows ) {
-						sum += data[row][column] * otherMatrix.data[otherRow][0];
+						sum += data[row][column] * otherMatrix.data[otherRow][otherColumn];
 					}
 				}
 				resultMatrix.data[row][otherColumn] = sum;
