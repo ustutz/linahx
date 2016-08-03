@@ -99,22 +99,43 @@ class Matrix {
 		}
 		return transposedMatrix;
 	}
+/*	
+	[[1 3 2]
+	 [4 0 1]]
+	 
+	 x
+	 
+	[[1]
+	 [0]
+	 [5]]
 	
+	= 1*1 + 3*0 + 2*5
+	  4*1 + 0*0 + 1*5
+	
+	= [[11]
+	   [ 9]]
+	   
+*/	
 	public function dot( otherMatrix:Matrix ):Matrix {
 		
 		if ( columns != otherMatrix.rows ) {
-			throw "Error: matrix must have " + columns + " rows.";
+			throw "Error: 2nd matrix must have " + columns + " rows.";
 		}
 		
 		var resultMatrix = new Matrix(rows, otherMatrix.columns );
 		
 		for( otherColumn in 0...otherMatrix.columns ) {
 			for ( row in 0...rows ) {
+				
+				trace( "data[" + row +"][" + otherColumn + "] = " );
+				
 				var sum = 0.0;
 				for ( column in 0...columns ) {
-					for ( otherRow in 0...otherMatrix.rows ) {
-						sum += data[row][column] * otherMatrix.data[otherRow][otherColumn];
-					}
+					
+					var otherRow = column;
+					var multiplication = data[row][column] * otherMatrix.data[otherRow][otherColumn];
+					trace( "+ " + multiplication );
+					sum += multiplication;
 				}
 				resultMatrix.data[row][otherColumn] = sum;
 			}
