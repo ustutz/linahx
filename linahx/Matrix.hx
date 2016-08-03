@@ -15,6 +15,7 @@ class Matrix {
 	
 	public var data:Vector<Vector<Float>>;
 
+	// create Matrix from String that is loaded from a CSV file.
 	public static function fromCSV( csvString:String, columnSeparator:String, rowSeparator:String = CHARCODE_NEWLINE ):Matrix {
 		
 		return Matrix.fromString( csvString, columnSeparator, rowSeparator );
@@ -76,6 +77,7 @@ class Matrix {
 		}
 	}
 	
+	// create new matrix
 	public function new( rows:Int, columns:Int, ?defaultvalue:Float ) {
 		
 		this.rows = rows;
@@ -93,20 +95,18 @@ class Matrix {
 		}
 	}
 	
-	public function transpose():Matrix {
+	public function copy():Matrix {
 		
-		var transposedColumns = rows;
-		var transposedRows = columns;
-		
-		var transposedMatrix = new Matrix( transposedColumns, transposedRows );
-		for ( column in 0...transposedColumns ) {
-			for ( row in 0...transposedRows ) {
-				transposedMatrix.data[column][row] = data[row][column];
+		var matrixCopy = new Matrix( rows, columns );
+		for ( row in 0...rows ) {
+			for ( column in 0...columns ) {
+				matrixCopy.data[row][column] = data[row][column];
 			}
 		}
-		return transposedMatrix;
+		return matrixCopy;
 	}
- 	
+	
+	// dot product of this matrix and another one
 	public function dot( otherMatrix:Matrix ):Matrix {
 		
 		if ( columns != otherMatrix.rows ) {
@@ -131,6 +131,23 @@ class Matrix {
 		return resultMatrix;
 	}
 	
+	// elementwise multiplication of two matrices
+	public function multiply( otherMatrix:Matrix ):Matrix {
+		
+		if ( columns != otherMatrix.columns || rows != otherMatrix.rows ) {
+			throw "Multiply Error:\nMatrix dimensions must be identical.\n\nFirst matrix dimensions are " + rows + "x" + columns + ". Second matrix dimensions are " + otherMatrix.rows + "x" + otherMatrix.columns + ".";
+		}
+		
+		var resultMatrix = new Matrix( rows, columns );
+		for ( row in 0...rows ) {
+			for ( column in 0...columns ) {
+				resultMatrix.data[row][column] = data[row][column] * otherMatrix.data[row][column];
+			}
+		}
+		return resultMatrix;
+	}
+	
+	// sum function adds allt the elements in one direction together: dimension=0 -> columns  dimension=1 -> rows
 	public function sum( ?dimension:Int ):Matrix {
 		
 		if ( dimension == null ) {
@@ -146,6 +163,7 @@ class Matrix {
 		}
 	}
 	
+	// sum of the elements in every column
 	function sumColumns():Matrix {
 		
 		var sumMatrix = new Matrix( 1, columns );
@@ -159,6 +177,7 @@ class Matrix {
 		return sumMatrix;
 	}
 	
+	// sum of the elements in every row
 	function sumRows():Matrix {
 		
 		var sumMatrix = new Matrix( rows, 1 );
@@ -187,4 +206,19 @@ class Matrix {
 		return s;
 	}
 	
+	// create transposed matrix
+	public function transpose():Matrix {
+		
+		var transposedColumns = rows;
+		var transposedRows = columns;
+		
+		var transposedMatrix = new Matrix( transposedColumns, transposedRows );
+		for ( column in 0...transposedColumns ) {
+			for ( row in 0...transposedRows ) {
+				transposedMatrix.data[column][row] = data[row][column];
+			}
+		}
+		return transposedMatrix;
+	}
+ 	
 }

@@ -38,6 +38,10 @@ class LA {
 		return matrix1.dot( matrix2 );
 	}
 	
+	public static function multiply( matrix1:Matrix, matrix2:Matrix ):Matrix {
+		return matrix1.multiply( matrix2 );
+	}
+	
 	public static function sum( matrix:Matrix, ?dimension ):Matrix {
 		return matrix.sum( dimension );
 	}
