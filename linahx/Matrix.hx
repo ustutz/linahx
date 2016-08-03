@@ -20,8 +20,8 @@ class Matrix {
 		return Matrix.fromString( csvString, columnSeparator, rowSeparator );
 	}
 	
-	// create Matrix from String. Matlab uses ',' as separator for the column and ';' as separator for rows
-	public static function fromString( string:String, columnSeparator:String = ",", rowSeparator:String = ";" ):Matrix {
+	// create Matrix from String. Matlab uses ' ' as separator for the column and ';' as separator for rows
+	public static function fromString( string:String, columnSeparator:String = " ", rowSeparator:String = ";" ):Matrix {
 		
 		string = StringTools.replace( string, CR, "" );
 		
@@ -31,6 +31,13 @@ class Matrix {
 		
 		var lines = string.split( rowSeparator );
 		for( i in 0...lines.length ) {
+			lines[i] = StringTools.trim( lines[i] );
+			
+			if( columnSeparator == " " ) {
+				var r = ~/  +/g; // replace spaces with regular expression
+				lines[i] = r.replace( lines[i], " " );
+			}
+			
 			var lineArray = lines[i].split( columnSeparator );
 			stringMatrix.push( lineArray );
 			
