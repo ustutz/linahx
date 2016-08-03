@@ -49,15 +49,19 @@ class Matrix {
 			throw "Error: matrix must have " + columns + " rows.";
 		}
 		
-		var resultMatrix = new Matrix(columns, otherMatrix.rows );
+		var resultMatrix = new Matrix(rows, otherMatrix.columns );
 		
-		var sum = 0.0;
-		for ( column in 0...columns ) {
-			for ( oRow in 0...otherMatrix.rows ) {
-				sum += data[0][column] * otherMatrix.data[oRow][0];
+		for( otherColumn in 0...otherMatrix.columns ) {
+			for ( row in 0...rows ) {
+				var sum = 0.0;
+				for ( column in 0...columns ) {
+					for ( otherRow in 0...otherMatrix.rows ) {
+						sum += data[row][column] * otherMatrix.data[otherRow][0];
+					}
+				}
+				resultMatrix.data[row][otherColumn] = sum;
 			}
 		}
-		resultMatrix.data[0][0] = sum;
 		
 		return resultMatrix;
 	}
