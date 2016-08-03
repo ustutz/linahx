@@ -40,7 +40,7 @@ class Matrix {
 				rowElementsNumber = currentRowElementsNumber;
 			} else {
 				if ( currentRowElementsNumber != rowElementsNumber ) {
-					trace( "Warning: Line " + i + " has a different number of elements." );
+					trace( "Matrix.fromString Warning: Line " + i + " has a different number of elements." );
 					if ( currentRowElementsNumber > rowElementsNumber ) {
 						rowElementsNumber = currentRowElementsNumber;
 					}
@@ -103,7 +103,7 @@ class Matrix {
 	public function dot( otherMatrix:Matrix ):Matrix {
 		
 		if ( columns != otherMatrix.rows ) {
-			throw "Error: 2nd matrix must have " + columns + " rows.";
+			throw "Dot Product Error:\nFirst matrix must have " + otherMatrix.rows + " columns or Second matrix must have " + columns + " rows.\nFirst matrix dimensions are " + rows + "x" + columns + ". Second matrix dimensions are " + otherMatrix.rows + "x" + otherMatrix.columns + ".";
 		}
 		
 		var resultMatrix = new Matrix(rows, otherMatrix.columns );
