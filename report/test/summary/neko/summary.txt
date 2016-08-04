@@ -1,0 +1,9 @@
+result:false
+count:4
+pass:3
+fail:1
+error:0
+ignore:0
+time:0.0190010070800781
+
+# MatrixCreationTest#fromString

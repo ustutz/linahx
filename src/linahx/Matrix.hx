@@ -20,6 +20,10 @@ class Matrix {
 	//
 	public static function fromArray1( array:Array<Float> ):Matrix {
 		
+		if ( array.length == 0 ) {
+			return new Matrix( 0, 0 );
+		}
+		
 		var matrix = new Matrix( 1, array.length );
 		for ( column in 0...array.length ) {
 			matrix.data[0][column] = array[column];
@@ -33,7 +37,7 @@ class Matrix {
 	public static function fromArray2( array:Array<Array<Float>> ):Matrix {
 		
 		var rowsNumber = array.length;
-		var columnsNumber = getColumnNumber( array );
+		var columnsNumber = getColumnsNumber( array );
 		
 		var matrix = new Matrix( rowsNumber, columnsNumber );
 		for( row in 0...rowsNumber ) {
@@ -77,7 +81,7 @@ class Matrix {
 			
 		}
 		
-		var columnsNumber = getColumnNumber( stringMatrix );
+		var columnsNumber = getColumnsNumber( stringMatrix );
 		
 		if( stringMatrix.length > 0 ) {
 			
@@ -122,15 +126,15 @@ class Matrix {
 	//
 	// get column number of a two-dimensional array, check if all rows have the same number of elements
 	//
-	static inline function getColumnNumber( array:Array<Array<Dynamic>>):Int {
+	static inline function getColumnsNumber( array:Array<Array<Dynamic>>):Int {
 		
-		var columnsNumber = -1;
+		var columnsNumber = 0;
 		
 		for( row in 0...array.length ) {
 			
 			var currentColumnNumber = array[row].length;
 			
-			if ( columnsNumber == -1 ) {
+			if ( columnsNumber == 0 ) {
 				columnsNumber = currentColumnNumber;
 			} else {
 				if ( currentColumnNumber != columnsNumber ) {
