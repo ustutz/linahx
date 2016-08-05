@@ -120,8 +120,8 @@ class MatrixCreationTest {
 		Assert.isTrue( matrixCopy.rows == 3 );
 		Assert.isTrue( matrixCopy.columns == 2 );
 		
-		var matrixCopy.data[0][0] = 1;
-		Assert.areNotEqual( matrix0[0][0], matrixCopy[0][0] );
+		matrixCopy.data[0][0] = 1;
+		Assert.areNotEqual( matrix0.data[0][0], matrixCopy.data[0][0] );
 	}
 		
 
