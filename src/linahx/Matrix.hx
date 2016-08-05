@@ -64,6 +64,11 @@ class Matrix {
 	public static function fromString( string:String, columnSeparator:String = " ", rowSeparator:String = ";" ):Matrix {
 		
 		string = StringTools.replace( string, CR, "" );
+		string = StringTools.trim( string );
+		
+		if ( string == "" ) {
+			return new Matrix( 0, 0 );
+		}
 		
 		var stringMatrix = new Array<Array<String>>();
 		
@@ -83,24 +88,19 @@ class Matrix {
 		
 		var columnsNumber = getColumnsNumber( stringMatrix );
 		
-		if( stringMatrix.length > 0 ) {
+		var matrix = new Matrix( stringMatrix.length, columnsNumber );
+		var rows = stringMatrix.length;
+		var columns = stringMatrix[0].length;
+		
+		var data = new Vector<Vector<Float>>( rows );
+		for ( row in 0...rows ) {
 			
-			var matrix = new Matrix( stringMatrix.length, columnsNumber );
-			var rows = stringMatrix.length;
-			var columns = stringMatrix[0].length;
-			
-			var data = new Vector<Vector<Float>>( rows );
-			for ( row in 0...rows ) {
-				
-				for ( column in 0...stringMatrix[row].length ) {
-					matrix.data[row][column] = Std.parseFloat( stringMatrix[row][column] );
-				}
+			for ( column in 0...stringMatrix[row].length ) {
+				matrix.data[row][column] = Std.parseFloat( stringMatrix[row][column] );
 			}
-			return matrix;
-			
-		} else {
-			return null;
 		}
+		return matrix;
+			
 	}
 	
 	//
@@ -126,7 +126,7 @@ class Matrix {
 	//
 	// get column number of a two-dimensional array, check if all rows have the same number of elements
 	//
-	static inline function getColumnsNumber( array:Array<Array<Dynamic>>):Int {
+	static function getColumnsNumber( array:Array<Array<Dynamic>>):Int {
 		
 		var columnsNumber = 0;
 		
