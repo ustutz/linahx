@@ -17,6 +17,7 @@ class Matrix {
 
 	//
 	// create Matrix from one-dimensional array of floats.
+	// var matrix = Matrix.fromArray1( [1, 2, 3, 4] );
 	//
 	public static function fromArray1( array:Array<Float> ):Matrix {
 		
@@ -33,6 +34,7 @@ class Matrix {
 	
 	//
 	// create Matrix from two-dimensional array of floats.
+	// matrix = Matrix.fromArray2( [[1, 2],[3, 4],[5, 6]] );
 	//
 	public static function fromArray2( array:Array<Array<Float>> ):Matrix {
 		
@@ -60,6 +62,7 @@ class Matrix {
 	
 	//
 	// create Matrix from String. Matlab uses ' ' as separator for the column and ';' as separator for rows
+	// var matrix4 = Matrix.fromString( "1 2 3; 4 5 6" );
 	//
 	public static function fromString( string:String, columnSeparator:String = " ", rowSeparator:String = ";" ):Matrix {
 		
@@ -105,6 +108,7 @@ class Matrix {
 	
 	//
 	// create new matrix
+	// var matrix = new Matrix( 3, 2, 0 );
 	//
 	public function new( rows:Int, columns:Int, ?defaultvalue:Float ) {
 		
@@ -125,6 +129,7 @@ class Matrix {
 	
 	//
 	// get column number of a two-dimensional array, check if all rows have the same number of elements
+	// - only used internally
 	//
 	static function getColumnsNumber( array:Array<Array<Dynamic>>):Int {
 		
@@ -150,6 +155,7 @@ class Matrix {
 	
 	//
 	// return a copy of the matrix
+	// var matrixCopy = matrix.copy();
 	//
 	public function copy():Matrix {
 		
@@ -164,6 +170,7 @@ class Matrix {
 	
 	//
 	// dot product of this matrix and another one
+	// var dotProductMatrix = matrix1.dot( matrix2 );
 	//
 	public function dot( otherMatrix:Matrix ):Matrix {
 		
@@ -191,6 +198,7 @@ class Matrix {
 	
 	//
 	// elementwise multiplication of two matrices
+	// var mMatrix = matrix1.multiply( matrix2 );
 	//
 	public function multiply( otherMatrix:Matrix ):Matrix {
 		
