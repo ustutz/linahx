@@ -216,9 +216,9 @@ class Matrix {
 	}
 	
 	//
-	// return the size of the matrix as a matrix
+	// return the number of rows and colums of the matrix as a matrix
 	//
-	public function size( ?dimension:Int ):Matrix {
+	public function shape( ?dimension:Int ):Matrix {
 		
 		if ( dimension == null ) {
 			return Matrix.fromArray1( [rows, columns] );
