@@ -56,5 +56,71 @@ class LATest {
 		
 	}
 	
+	@Test
+	public function testDot():Void {
+		
+		var matrix1 = Matrix.fromString( "1 2 3; 4 5 6" );
+		var matrix2 = Matrix.fromString( "1; 2; 3" );
+		
+		var dotMatrix = LA.dot( matrix1, matrix2 );
+		
+		Assert.isTrue( dotMatrix.rows == 2 );
+		Assert.isTrue( dotMatrix.columns == 1 );
+		Assert.isTrue( dotMatrix.data[0][0] == 14 );
+		Assert.isTrue( dotMatrix.data[1][0] == 32 );
+	}
+	
+	@Test
+	public function testMultiply():Void {
+		
+		var matrix1 = Matrix.fromString( "1 2 3; 4 5 6" );
+		var matrix2 = Matrix.fromString( "2 2 2; 3 3 3" );
+		
+		var dotMatrix = LA.multiply( matrix1, matrix2 );
+		
+		Assert.isTrue( dotMatrix.rows == 2 );
+		Assert.isTrue( dotMatrix.columns == 3 );
+		Assert.isTrue( dotMatrix.data[0][0] == 2 );
+		Assert.isTrue( dotMatrix.data[1][2] == 18 );
+	}
+	
+	@Test
+	public function testSize():Void {
+		
+		var matrix1 = Matrix.fromString( "1 2 3; 4 5 6" );
+		var sizeMatrix = LA.size( matrix1 );
+		
+		Assert.isTrue( sizeMatrix.rows == 1 );
+		Assert.isTrue( sizeMatrix.columns == 2 );
+		Assert.isTrue( sizeMatrix.data[0][1] == 3 );
+	}
+	
+	@Test
+	public function testSum():Void {
+		
+		var matrix1 = Matrix.fromString( "1 2 3; 4 5 6" );
+		var sumMatrix1 = LA.sum( matrix1 );
+		
+		Assert.isTrue( sumMatrix1.rows == 1 );
+		Assert.isTrue( sumMatrix1.columns == 3 );
+		Assert.isTrue( sumMatrix1.data[0][0] == 5 );
+		
+		var matrix2 = Matrix.fromString( "1 2 3; 4 5 6" );
+		var sumMatrix2 = LA.sum( matrix2, 0 );
+		
+		Assert.isTrue( sumMatrix2.rows == 1 );
+		Assert.isTrue( sumMatrix2.columns == 3 );
+		Assert.isTrue( sumMatrix2.data[0][0] == 5 );
+		
+		var matrix3 = Matrix.fromString( "1 2 3; 4 5 6" );
+		var sumMatrix3 = LA.sum( matrix3, 1 );
+		
+		Assert.isTrue( sumMatrix3.rows == 2 );
+		Assert.isTrue( sumMatrix3.columns == 1 );
+		Assert.isTrue( sumMatrix3.data[0][0] == 6 );
+		Assert.isTrue( sumMatrix3.data[1][0] == 15 );
+		
+	}
+	
 
 }

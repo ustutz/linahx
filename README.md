@@ -1,6 +1,6 @@
 # linahx - Linear Algebra library for Haxe
 
-...aims to be similar to NumPy and Matlab
+...aims to be similar to NumPy, Matlab and Octave
 
 ##How to use
 
@@ -33,9 +33,9 @@ Default for column separator is SPACE, default for row separator is ','
 
     var matrix = Matrix.fromString( "1 2 3; 4 5 6" );
 
-But you can set column and row separator in the function arguments
+You can set custom column and row separators in the method arguments
 
     matrix = Matrix.fromString( "1, 2, 3\n 4, 5, 6", ",", "\n" );
 
 
-####...check the source code for more information on the implemented features.
+####...check the source code for more information on the implemented methods.
