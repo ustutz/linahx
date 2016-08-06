@@ -16,6 +16,7 @@ class Matrix {
 	public var data:Vector<Vector<Float>>;
 
 	@var public var siz(get, null ):Int;
+	@var public var size(get, null ):Int;
 	
 	//
 	// create matrix from one-dimensional array of floats.
@@ -296,6 +297,10 @@ class Matrix {
 	}
 	
 	public function get_siz():Int {
+		return size;
+	}
+	
+	public function get_size():Int {
 		return rows * columns;
 	}
 	
