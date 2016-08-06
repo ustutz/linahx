@@ -15,6 +15,8 @@ class Matrix {
 	
 	public var data:Vector<Vector<Float>>;
 
+	@var public var siz(get, null ):Int;
+	
 	//
 	// create matrix from one-dimensional array of floats.
 	// var matrix = Matrix.fromArray1( [1, 2, 3, 4] );
@@ -154,6 +156,25 @@ class Matrix {
 	}
 	
 	//
+	// elementwise division of two matrices
+	// var mMatrix = matrix1.divide( matrix2 );
+	//
+	public function divide( otherMatrix:Matrix ):Matrix {
+		
+		if ( columns != otherMatrix.columns || rows != otherMatrix.rows ) {
+			throw "Multiply Error:\nMatrix dimensions must be identical.\n\nFirst matrix dimensions are " + rows + "x" + columns + ". Second matrix dimensions are " + otherMatrix.rows + "x" + otherMatrix.columns + ".";
+		}
+		
+		var resultMatrix = new Matrix( rows, columns );
+		for ( row in 0...rows ) {
+			for ( column in 0...columns ) {
+				resultMatrix.data[row][column] = data[row][column] / otherMatrix.data[row][column];
+			}
+		}
+		return resultMatrix;
+	}
+	
+	//
 	// return a copy of the matrix
 	// var matrixCopy = matrix.copy();
 	//
@@ -216,6 +237,51 @@ class Matrix {
 	}
 	
 	//
+	// scalar multiplication
+	// var mMatrix = matrix1.smultiply( value );
+	//
+	public function smultiply( value:Float ):Matrix {
+		
+		var resultMatrix = new Matrix( rows, columns );
+		for ( row in 0...rows ) {
+			for ( column in 0...columns ) {
+				resultMatrix.data[row][column] = data[row][column] * value;
+			}
+		}
+		return resultMatrix;
+	}
+	
+	//
+	// scalar power
+	// var mMatrix = matrix1.pow( value );
+	//
+	public function pow( exp:Float ):Matrix {
+		
+		var resultMatrix = new Matrix( rows, columns );
+		for ( row in 0...rows ) {
+			for ( column in 0...columns ) {
+				resultMatrix.data[row][column] = Math.pow( data[row][column], exp );
+			}
+		}
+		return resultMatrix;
+	}
+	
+	//
+	// scalar division
+	// var mMatrix = matrix1.sdivide( value );
+	//
+	public function sdivide( value:Float ):Matrix {
+		
+		var resultMatrix = new Matrix( rows, columns );
+		for ( row in 0...rows ) {
+			for ( column in 0...columns ) {
+				resultMatrix.data[row][column] = data[row][column] / value;
+			}
+		}
+		return resultMatrix;
+	}
+	
+	//
 	// return the number of rows and colums of the matrix as a matrix
 	//
 	public function shape( ?dimension:Int ):Matrix {
@@ -227,6 +293,10 @@ class Matrix {
 		} else {
 			return Matrix.fromArray1( [ columns ] );
 		}
+	}
+	
+	public function get_siz():Int {
+		return rows * columns;
 	}
 	
 	//

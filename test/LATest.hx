@@ -85,6 +85,12 @@ class LATest {
 	}
 	
 	@Test
+	public function testSize():Void {
+		var matrix0 = new Matrix( 3, 2, 0 );
+		Assert.isTrue( LA.size( matrix0 ) == 6 );
+	}
+	
+	@Test
 	public function testShape():Void {
 		
 		var matrix1 = Matrix.fromString( "1 2 3; 4 5 6" );

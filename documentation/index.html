@@ -13,23 +13,29 @@
 <tr class="headline">
 	<td>MATLAB®</td><td>NumPy</td><td>linahx</td><td>Notes</td>
 </tr><tr>
-	<td>ndims(a)</td><td>ndim(a) or a.ndim</td><td>todo</td><td>get the number of dimensions of a matrix</td>
+	<td>ndims(a)</td><td>ndim(a) or a.ndim</td>
+	<td>is always 2</td><td>get the number of dimensions of a matrix</td>
 </tr><tr>
-	<td>numel(a)</td><td>size(a) or a.siz</td><td>todo</td><td>get the number of elements of an array</td>
+	<td>numel(a)</td><td>size(a) or a.siz</td>
+	<td>LA.size(a) or a.siz</td><td>get the number of elements of an array</td>
 </tr><tr>
-	<td>size(a)</td><td>shape(a) or a.shape</td><td>LA.shape(a) or a.shape()</td><td>get the “size” of the matrix</td>
+	<td>size(a)</td><td>shape(a) or a.shape</td>
+	<td>LA.shape(a) or a.shape()</td><td>get the “size” of the matrix</td>
 </tr><tr>
-	<td>size(a,n)</td><td>a.shape[n-1]</td><td>todo</td>
-	<td>get the number of elements of the n-th dimension of array a. (Note that MATLAB® uses 1 based indexing while Haxe uses 0 based indexing</td>
+	<td>size(a,n)</td><td>a.shape[n-1]</td>
+	<td>LA.shape(a, n-1) or a.shape(n-1)</td>
+	<td>get the number of elements of the n-th dimension of array a. (Note that MATLAB® uses 1 based indexing while Python and Haxe use 0 based indexing</td>
 </tr><tr>
 	<td>[ 1 2 3; 4 5 6 ]</td><td>array([[1.,2.,3.], [4.,5.,6.]])</td>
 	<td>Matrix.fromString( "1 2 3; 4 5 6" ) or Matrix.fromArray2( [[1, 2, 3],[4, 5, 6]] )</td><td>2x3 matrix literal</td>
 </tr><tr>
 	<td>[ a b; c d ]</td><td>vstack([hstack([a,b]), hstack([c,d])]) or bmat('a b; c d').A</td><td>todo</td><td>construct a matrix from blocks a, b, c, and d</td>
 </tr><tr>
-	<td>a(end)</td><td>a[-1]</td><td>todo</td><td>access last element in the 1xn matrix a</td>
+	<td>a(end)</td><td>a[-1]</td>
+	<td>a.data[0][a.data[0].length -1]</td><td>access last element in the 1xn matrix a</td>
 </tr><tr>
-	<td>a(2,5)</td><td>a[1,4]</td><td>todo</td><td>access element in second row, fifth column</td>
+	<td>a(2,5)</td><td>a[1,4]</td>
+	<td>a.data[1][4]</td><td>access element in second row, fifth column</td>
 </tr><tr>
 	<td>a(2,:)</td><td>a[1] or a[1,:]</td><td>todo</td><td>entire second row of a</td>
 </tr><tr>
@@ -54,14 +60,24 @@
 	<td>a'</td><td>a.conj().transpose() or a.conj().T</td><td>todo</td><td>conjugate transpose of a</td>
 </tr><tr>
 	<td>a * b</td><td>a.dot(b)</td>
-	<td>a.dot(b) or LA.dot(a, b)</td><td>matrix multiply</td>
+	<td>LA.dot( a, b ) or a.dot( b )</td><td>matrix multiply</td>
 </tr><tr>
 	<td>a .* b</td><td>a * b</td>
-	<td>a.multiply( b) or LA.multiply(a, b)</td><td>element-wise multiply</td>
+	<td>LA.multiply( a, b ) or a.multiply( b )</td><td>element-wise multiply</td>
 </tr><tr>
-	<td>a./b</td><td>a/b</td><td>todo</td><td>element-wise divide</td>
+	<td>a .* b</td><td>a * b</td>
+	<td>LA.smultiply( a, b ) or a.smultiply( b )</td>
+	<td>scalar multiply</td>
 </tr><tr>
-	<td>a.^3</td><td>a**3</td><td>todo</td><td>element-wise exponentiation</td>
+	<td>a./b</td><td>a/b</td>
+	<td>LA.divide( a, b ) or a.divide( b )</td><td>element-wise divide</td>
+</tr><tr>
+	<td>a./b</td><td>a/b</td>
+	<td>LA.sdivide( a, b ) or a.sdivide( b )</td>
+	<td>scalar divide</td>
+</tr><tr>
+	<td>a.^3</td><td>a**3</td>
+	<td>LA.pow( a, b ) or a.pow( b )</td><td>element-wise exponentiation</td>
 </tr><tr>
 	<td>(a>0.5)</td><td>(a>0.5)</td><td>todo</td>
 	<td>matrix whose i,jth element is (a_ij > 0.5). The MATLAB® result is an array of 0s and 1s. The NumPy result is an array of the boolean values False and True. The Haxe result is a matrix of 0s and 1s.</td>
