@@ -85,14 +85,14 @@ class LATest {
 	}
 	
 	@Test
-	public function testSize():Void {
+	public function testShape():Void {
 		
 		var matrix1 = Matrix.fromString( "1 2 3; 4 5 6" );
-		var sizeMatrix = LA.size( matrix1 );
+		var shapeMatrix = LA.shape( matrix1 );
 		
-		Assert.isTrue( sizeMatrix.rows == 1 );
-		Assert.isTrue( sizeMatrix.columns == 2 );
-		Assert.isTrue( sizeMatrix.data[0][1] == 3 );
+		Assert.isTrue( shapeMatrix.rows == 1 );
+		Assert.isTrue( shapeMatrix.columns == 2 );
+		Assert.isTrue( shapeMatrix.data[0][1] == 3 );
 	}
 	
 	@Test
