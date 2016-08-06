@@ -38,4 +38,6 @@ You can set custom column and row separators in the method arguments
     matrix = Matrix.fromString( "1, 2, 3\n 4, 5, 6", ",", "\n" );
 
 
+You can see the currently implemented features in this [comparison table]()
+
 ####...check the source code for more information on the implemented methods.
