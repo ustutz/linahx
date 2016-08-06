@@ -110,27 +110,6 @@ class Matrix {
 	}
 	
 	//
-	// create new matrix
-	// var matrix = new Matrix( 3, 2, 0 );
-	//
-	public function new( rows:Int, columns:Int, ?defaultvalue:Float ) {
-		
-		this.rows = rows;
-		this.columns = columns;
-		
-		data = new Vector<Vector<Float>>( rows );
-		for ( row in 0...rows ) {
-			data[row] = new Vector<Float>(columns);
-			
-			if( defaultvalue != null ) {
-				for ( column in 0...columns ) {
-					data[row][column] = defaultvalue; //trace( "row " + row + "  column " + column + "  set to " + defaultvalue );
-				}
-			}
-		}
-	}
-	
-	//
 	// get column number of a two-dimensional array, check if all rows have the same number of elements
 	// - only used internally
 	//
@@ -157,6 +136,42 @@ class Matrix {
 	}
 	
 	//
+	// create new matrix
+	// var matrix = new Matrix( 3, 2, 0 );
+	//
+	public function new( rows:Int, columns:Int, ?defaultvalue:Float ) {
+		
+		this.rows = rows;
+		this.columns = columns;
+		
+		data = new Vector<Vector<Float>>( rows );
+		for ( row in 0...rows ) {
+			data[row] = new Vector<Float>(columns);
+			
+			if( defaultvalue != null ) {
+				for ( column in 0...columns ) {
+					data[row][column] = defaultvalue; //trace( "row " + row + "  column " + column + "  set to " + defaultvalue );
+				}
+			}
+		}
+	}
+	
+	//
+	// return a copy of the matrix
+	// var matrixCopy = matrix.copy();
+	//
+	public function copy():Matrix {
+		
+		var matrixCopy = new Matrix( rows, columns );
+		for ( row in 0...rows ) {
+			for ( column in 0...columns ) {
+				matrixCopy.data[row][column] = data[row][column];
+			}
+		}
+		return matrixCopy;
+	}
+	
+	//
 	// elementwise division of two matrices
 	// var mMatrix = matrix1.divide( matrix2 );
 	//
@@ -173,21 +188,6 @@ class Matrix {
 			}
 		}
 		return resultMatrix;
-	}
-	
-	//
-	// return a copy of the matrix
-	// var matrixCopy = matrix.copy();
-	//
-	public function copy():Matrix {
-		
-		var matrixCopy = new Matrix( rows, columns );
-		for ( row in 0...rows ) {
-			for ( column in 0...columns ) {
-				matrixCopy.data[row][column] = data[row][column];
-			}
-		}
-		return matrixCopy;
 	}
 	
 	//
@@ -215,6 +215,44 @@ class Matrix {
 			}
 		}
 		
+		return resultMatrix;
+	}
+	
+	public function get( rowsArray:Array<Int>, columnsArray:Array<Int> ):Matrix {
+		
+		if ( rowsArray == null ) {
+			rowsArray = Range.c( 0, rows );
+		}
+		
+		if ( columnsArray == null ) {
+			columnsArray = Range.c( 0, columns );
+		}
+		
+		for ( rowElement in rowsArray ) {
+			if ( rowElement >= rows ) {
+				trace( "Matrix.get Error: row " + rowElement + " > Matrix rows." );
+				rowsArray.remove( rowElement );
+			}
+		}
+		
+		for ( columnElement in columnsArray ) {
+			if ( columnElement >= columns ) {
+				trace( "Matrix.get Error: column " + columnElement + " > Matrix columns." );
+				columnsArray.remove( columnElement );
+			}
+		}
+		
+		var resultMatrix = new Matrix( rowsArray.length, columnsArray.length );
+			
+		for ( rowCount in 0...rowsArray.length ) {
+			
+			var row = rowsArray[rowCount];
+			
+			for ( columnCount in 0...columnsArray.length ) {
+				var column = columnsArray[columnCount];
+				resultMatrix.data[rowCount][columnCount] = data[row][column];
+			}
+		}
 		return resultMatrix;
 	}
 	
