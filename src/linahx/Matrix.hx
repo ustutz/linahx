@@ -72,6 +72,10 @@ class Matrix {
 		string = StringTools.replace( string, CR, "" );
 		string = StringTools.trim( string );
 		
+		while ( string.charAt( string.length - 1 ) == rowSeparator ) {
+			string = string.substr( 0, string.length - 1 );
+		}
+		
 		if ( string == "" ) {
 			return new Matrix( 0, 0 );
 		}
@@ -221,11 +225,11 @@ class Matrix {
 	public function get( rowsArray:Array<Int>, columnsArray:Array<Int> ):Matrix {
 		
 		if ( rowsArray == null ) {
-			rowsArray = Range.c( 0, rows );
+			rowsArray = Range.int( 0, rows );
 		}
 		
 		if ( columnsArray == null ) {
-			columnsArray = Range.c( 0, columns );
+			columnsArray = Range.int( 0, columns );
 		}
 		
 		for ( rowElement in rowsArray ) {
