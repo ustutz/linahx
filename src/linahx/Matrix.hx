@@ -16,7 +16,7 @@ class Matrix {
 	public var data:Vector<Vector<Float>>;
 
 	//
-	// create Matrix from one-dimensional array of floats.
+	// create matrix from one-dimensional array of floats.
 	// var matrix = Matrix.fromArray1( [1, 2, 3, 4] );
 	//
 	public static function fromArray1( array:Array<Float> ):Matrix {
@@ -33,7 +33,7 @@ class Matrix {
 	}
 	
 	//
-	// create Matrix from two-dimensional array of floats.
+	// create matrix from two-dimensional array of floats.
 	// matrix = Matrix.fromArray2( [[1, 2],[3, 4],[5, 6]] );
 	//
 	public static function fromArray2( array:Array<Array<Float>> ):Matrix {
@@ -53,7 +53,7 @@ class Matrix {
 	}
 	
 	//
-	// create Matrix from String that is loaded from a CSV file.
+	// create matrix from String that is loaded from a CSV file.
 	//
 	public static function fromCSV( csvString:String, columnSeparator:String, rowSeparator:String = CHARCODE_NEWLINE ):Matrix {
 		
@@ -61,7 +61,7 @@ class Matrix {
 	}
 	
 	//
-	// create Matrix from String. Matlab uses ' ' as separator for the column and ';' as separator for rows
+	// create matrix from String. Matlab uses ' ' as separator for the column and ';' as separator for rows
 	// var matrix4 = Matrix.fromString( "1 2 3; 4 5 6" );
 	//
 	public static function fromString( string:String, columnSeparator:String = " ", rowSeparator:String = ";" ):Matrix {
