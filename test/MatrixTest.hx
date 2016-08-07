@@ -18,16 +18,6 @@ class MatrixTest {
 	}
 	
 	@Test
-	public function testLength():Void {
-		
-		var matrix0 = new Matrix( 3, 2, 0 );
-		Assert.isTrue( matrix0.length == 3 );
-		
-		var matrix1 = new Matrix( 2, 4, 0 );
-		Assert.isTrue( matrix1.length == 4 );
-	}
-	
-	@Test
 	public function testConcatenate():Void {
 	
 		var matrix1 = LA.zeros( 1, 3 );
@@ -48,4 +38,31 @@ class MatrixTest {
 		
 	}
 
+	@Test
+	public function testAdd():Void {
+		
+		var matrix1 = LA.zeros( 2, 3 );
+		var matrix2 = LA.ones( 2, 3 );
+		
+		var addedMatrix = matrix1.add( matrix2 );
+		Assert.isTrue( addedMatrix.data[0][0] == 1 );
+		
+		var scalarAddedMatrix = matrix1.sadd( 4 );
+		Assert.isTrue( scalarAddedMatrix.data[0][0] == 4 );
+		
+	}
+	
+	@Test
+	public function testSubtract():Void {
+		
+		var matrix1 = LA.zeros( 2, 3 );
+		var matrix2 = LA.ones( 2, 3 );
+		
+		var addedMatrix = matrix1.subtract( matrix2 );
+		Assert.isTrue( addedMatrix.data[0][0] == -1 );
+		
+		var scalarAddedMatrix = matrix1.ssubtract( 4 );
+		Assert.isTrue( scalarAddedMatrix.data[0][0] == -4 );
+		
+	}
 }

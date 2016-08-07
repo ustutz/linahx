@@ -66,12 +66,20 @@ class LA {
 		return matrix1.concatenate( matrix2 );
 	}
 	
+	public static function sadd( matrix1:Matrix, value:Float ):Matrix {
+		return matrix1.sadd( value );
+	}
+	
 	public static function sdivide( matrix1:Matrix, value:Float ):Matrix {
 		return matrix1.sdivide( value );
 	}
 	
 	public static function smultiply( matrix1:Matrix, value:Float ):Matrix {
 		return matrix1.smultiply( value );
+	}
+	
+	public static function ssubtract( matrix1:Matrix, value:Float ):Matrix {
+		return matrix1.ssubtract( value );
 	}
 	
 	public static function size( matrix:Matrix ):Int {

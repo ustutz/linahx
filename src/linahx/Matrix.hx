@@ -17,7 +17,6 @@ class Matrix {
 
 	@var public var siz(get, null ):Int;
 	@var public var size(get, null ):Int;
-	@var public var length(get, null ):Int;
 	
 	//
 	// create matrix from one-dimensional array of floats.
@@ -161,6 +160,24 @@ class Matrix {
 		}
 	}
 	
+	//
+	// add function adds another matrix to this one
+	//
+	public function add( otherMatrix:Matrix ):Matrix {
+		
+		if ( columns != otherMatrix.columns || rows != otherMatrix.rows ) {
+			throw "Add Error:\nMatrix dimensions must match.\n\nFirst matrix dimensions are " + rows + "x" + columns + ". Second matrix dimensions are " + otherMatrix.rows + "x" + otherMatrix.columns + ".";
+		}
+		
+		var resultMatrix = new Matrix( rows, columns );
+		for ( row in 0...rows ) {
+			for ( column in 0...columns ) {
+				resultMatrix.data[row][column] = data[row][column] + otherMatrix.data[row][column];
+			}
+		}
+		return resultMatrix;
+	}
+	
 	public function concatenate( otherMatrix:Matrix, dimension:Int = 0 ):Matrix {
 		
 		if ( dimension == 0 ) {
@@ -264,7 +281,7 @@ class Matrix {
 		return resultMatrix;
 	}
 	
-	public function get( rowsArray:Array<Int>, columnsArray:Array<Int> ):Matrix {
+	public function get( ?rowsArray:Array<Int>, ?columnsArray:Array<Int> ):Matrix {
 		
 		if ( rowsArray == null ) {
 			rowsArray = Range.int( 0, rows );
@@ -357,6 +374,21 @@ class Matrix {
 	}
 	
 	//
+	// scalar addition
+	// var mMatrix = matrix1.sadd( value );
+	//
+	public function sadd( value:Float ):Matrix {
+		
+		var resultMatrix = new Matrix( rows, columns );
+		for ( row in 0...rows ) {
+			for ( column in 0...columns ) {
+				resultMatrix.data[row][column] = data[row][column] + value;
+			}
+		}
+		return resultMatrix;
+	}
+	
+	//
 	// scalar division
 	// var mMatrix = matrix1.sdivide( value );
 	//
@@ -399,8 +431,27 @@ class Matrix {
 	//
 	// subtract function subtracts another matrix from this one
 	//
-	public function subract( otherMatrix:Matrix ):Matrix {
-		for(
+	public function subtract( otherMatrix:Matrix ):Matrix {
+		
+		if ( columns != otherMatrix.columns || rows != otherMatrix.rows ) {
+			throw "Subtract Error:\nMatrix dimensions must match.\n\nFirst matrix dimensions are " + rows + "x" + columns + ". Second matrix dimensions are " + otherMatrix.rows + "x" + otherMatrix.columns + ".";
+		}
+		
+		var resultMatrix = new Matrix( rows, columns );
+		for ( row in 0...rows ) {
+			for ( column in 0...columns ) {
+				resultMatrix.data[row][column] = data[row][column] - otherMatrix.data[row][column];
+			}
+		}
+		return resultMatrix;
+	}
+	
+	//
+	// scalar subtraction
+	// var mMatrix = matrix1.ssubtract( value );
+	//
+	public function ssubtract( value:Float ):Matrix {
+		return sadd( -value );
 	}
 	
 	//
