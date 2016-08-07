@@ -10,8 +10,8 @@ class Matrix {
 	static inline var CHARCODE_NEWLINE:String = String.fromCharCode(10);
 	static inline var CR:String = String.fromCharCode(13);
 	
-	public var rows:Int;
-	public var columns:Int;
+	public var rows(default, null):Int;
+	public var columns(default, null):Int;
 	
 	public var data:Vector<Vector<Float>>;
 
@@ -460,22 +460,28 @@ class Matrix {
 	public function sum( ?dimension:Int ):Matrix {
 		
 		if ( dimension == null ) {
-			if ( columns > 1 ) {
-				return sumColumns();
-			} else {
-				return sumRows();
+			
+			if ( columns > 1 && rows > 1 ) { //trace( "columns & rows > 1 return columnSum()" );
+				return columnSum();
+				
+			} else if ( columns == 1 ) { //trace( "columns == 1 return columnSum()" );
+				return columnSum();
+				
+			} else { //trace( "rows == 1 return rowSum()" );
+				return rowSum();
 			}
+			
 		} else if ( dimension == 0 ) {
-			return sumColumns();
+			return columnSum();
 		} else {
-			return sumRows();
+			return rowSum();
 		}
 	}
 	
 	//
 	// sum of the elements in every column
 	//
-	function sumColumns():Matrix {
+	function columnSum():Matrix {
 		
 		var sumMatrix = new Matrix( 1, columns );
 		for ( column in 0...columns ) {
@@ -491,7 +497,7 @@ class Matrix {
 	//
 	// sum of the elements in every row
 	//
-	function sumRows():Matrix {
+	function rowSum():Matrix {
 		
 		var sumMatrix = new Matrix( rows, 1 );
 		for ( row in 0...rows ) {

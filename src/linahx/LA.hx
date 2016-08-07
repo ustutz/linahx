@@ -74,6 +74,10 @@ class LA {
 		return matrix1.sdivide( value );
 	}
 	
+	public static function shape( matrix:Matrix, ?dimension ):Matrix {
+		return matrix.shape( dimension );
+	}
+	
 	public static function smultiply( matrix1:Matrix, value:Float ):Matrix {
 		return matrix1.smultiply( value );
 	}
@@ -86,12 +90,25 @@ class LA {
 		return matrix.siz;
 	}
 	
-	public static function shape( matrix:Matrix, ?dimension ):Matrix {
-		return matrix.shape( dimension );
-	}
-	
 	public static function sum( matrix:Matrix, ?dimension ):Matrix {
 		return matrix.sum( dimension );
+	}
+	
+	public static function sumToFloat( matrix:Matrix ):Float { //trace( "sumToFloat" );
+		
+		if ( matrix.columns == 0 && matrix.rows == 0 ) { //trace( "matrix.columns == 0 && matrix.rows == 0" );
+			return 0;
+		} if ( matrix.columns == 1 && matrix.rows == 1 ) { //trace( "matrix.columns == 1 && matrix.rows == 1" );
+			return matrix.data[0][0];
+		} else {
+			if ( matrix.rows > 1 ) { //trace( "matrix.rows > 1" );
+				matrix = matrix.sum( 0 );
+			}
+			if ( matrix.columns > 1 ) { //trace( "matrix.columns > 1" );
+				matrix = matrix.sum( 1 );
+			}
+			return matrix.data[0][0];
+		}
 	}
 	
 	public static function vstack( matrix1:Matrix, matrix2:Matrix ):Matrix {

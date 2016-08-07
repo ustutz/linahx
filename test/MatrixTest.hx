@@ -11,10 +11,93 @@ class MatrixTest {
 	public function new() {	}
 	
 	@Test
-	public function testZeros():Void {
+	public function testSum():Void {
 		
-		var matrix0 = new Matrix( 3, 2, 0 );
-		Assert.isTrue( matrix0.siz == 6 );
+		var matrix1 = Matrix.fromString( "1 3 2;4 0 1" );
+		
+		var autoSumMatrix1 = matrix1.sum();
+		Assert.isTrue( autoSumMatrix1.rows == 1 );
+		Assert.isTrue( autoSumMatrix1.columns == 3 );
+		Assert.isTrue( autoSumMatrix1.data[0][0] == 5 );
+		
+		var columnSumMatrix1 = matrix1.sum( 0 );
+		Assert.isTrue( columnSumMatrix1.rows == 1 );
+		Assert.isTrue( columnSumMatrix1.columns == 3 );
+		Assert.isTrue( columnSumMatrix1.data[0][0] == 5 );
+		
+		var rowSumMatrix1 = matrix1.sum( 1 );
+		Assert.isTrue( rowSumMatrix1.rows == 2 );
+		Assert.isTrue( rowSumMatrix1.columns == 1 );
+		Assert.isTrue( rowSumMatrix1.data[0][0] == 6 );
+		
+		
+		var matrix2 = Matrix.fromString( "1;0;5" );
+		
+		var autoSumMatrix2 = matrix2.sum();
+		Assert.isTrue( autoSumMatrix2.rows == 1 );
+		Assert.isTrue( autoSumMatrix2.columns == 1 );
+		Assert.isTrue( autoSumMatrix2.data[0][0] == 6 );
+		
+		var columnSumMatrix2 = matrix2.sum( 0 );
+		Assert.isTrue( columnSumMatrix2.rows == 1 );
+		Assert.isTrue( columnSumMatrix2.columns == 1 );
+		Assert.isTrue( columnSumMatrix2.data[0][0] == 6 );
+		
+		var rowSumMatrix2 = matrix2.sum( 1 );
+		Assert.isTrue( rowSumMatrix2.rows == 3 );
+		Assert.isTrue( rowSumMatrix2.columns == 1 );
+		Assert.isTrue( rowSumMatrix2.data[0][0] == 1 );
+		
+		
+		var matrix3 = Matrix.fromString( "1 0 5" );
+
+		var autoSumMatrix3 = matrix3.sum();
+		Assert.isTrue( autoSumMatrix3.rows == 1 );
+		Assert.isTrue( autoSumMatrix3.columns == 1 );
+		Assert.isTrue( autoSumMatrix3.data[0][0] == 6 );
+		
+		var columnSumMatrix3 = matrix3.sum( 0 );
+		Assert.isTrue( columnSumMatrix3.rows == 1 );
+		Assert.isTrue( columnSumMatrix3.columns == 3 );
+		Assert.isTrue( columnSumMatrix3.data[0][0] == 1 );
+		
+		var rowSumMatrix3 = matrix3.sum( 1 );
+		Assert.isTrue( rowSumMatrix3.rows == 1 );
+		Assert.isTrue( rowSumMatrix3.columns == 1 );
+		Assert.isTrue( rowSumMatrix3.data[0][0] == 6 );
+		
+		
+		var matrix4 = Matrix.fromString( "1" );
+
+		var autoSumMatrix4 = matrix4.sum();
+		Assert.isTrue( autoSumMatrix4.rows == 1 );
+		Assert.isTrue( autoSumMatrix4.columns == 1 );
+		Assert.isTrue( autoSumMatrix4.data[0][0] == 1 );
+		
+		var columnSumMatrix4 = matrix4.sum( 0 );
+		Assert.isTrue( columnSumMatrix4.rows == 1 );
+		Assert.isTrue( columnSumMatrix4.columns == 1 );
+		Assert.isTrue( columnSumMatrix4.data[0][0] == 1 );
+		
+		var rowSumMatrix4 = matrix4.sum( 1 );
+		Assert.isTrue( rowSumMatrix4.rows == 1 );
+		Assert.isTrue( rowSumMatrix4.columns == 1 );
+		Assert.isTrue( rowSumMatrix4.data[0][0] == 1 );
+		
+	}
+	
+	@Test
+	public function testAdd():Void {
+		
+		var matrix1 = LA.zeros( 2, 3 );
+		var matrix2 = LA.ones( 2, 3 );
+		
+		var addedMatrix = matrix1.add( matrix2 );
+		Assert.isTrue( addedMatrix.data[0][0] == 1 );
+		
+		var scalarAddedMatrix = matrix1.sadd( 4 );
+		Assert.isTrue( scalarAddedMatrix.data[0][0] == 4 );
+		
 	}
 	
 	@Test
@@ -39,20 +122,6 @@ class MatrixTest {
 	}
 
 	@Test
-	public function testAdd():Void {
-		
-		var matrix1 = LA.zeros( 2, 3 );
-		var matrix2 = LA.ones( 2, 3 );
-		
-		var addedMatrix = matrix1.add( matrix2 );
-		Assert.isTrue( addedMatrix.data[0][0] == 1 );
-		
-		var scalarAddedMatrix = matrix1.sadd( 4 );
-		Assert.isTrue( scalarAddedMatrix.data[0][0] == 4 );
-		
-	}
-	
-	@Test
 	public function testSubtract():Void {
 		
 		var matrix1 = LA.zeros( 2, 3 );
@@ -65,4 +134,12 @@ class MatrixTest {
 		Assert.isTrue( scalarAddedMatrix.data[0][0] == -4 );
 		
 	}
+	
+	@Test
+	public function testZeros():Void {
+		
+		var matrix0 = new Matrix( 3, 2, 0 );
+		Assert.isTrue( matrix0.siz == 6 );
+	}
+	
 }
