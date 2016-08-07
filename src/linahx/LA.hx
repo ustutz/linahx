@@ -43,8 +43,12 @@ class LA {
 		return new Matrix( rows, columns, 1 );
 	}
 	
+	public static function pow( matrix1:Matrix, exp:Float ):Matrix {
+		return matrix1.pow( exp );
+	}
+	
 	public static function power( matrix1:Matrix, exp:Float ):Matrix {
-		return matrix1.power( exp );
+		return matrix1.pow( exp );
 	}
 	
 	public static function rand( rows:Int, columns:Int ):Matrix {

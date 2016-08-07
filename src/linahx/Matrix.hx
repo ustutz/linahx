@@ -338,9 +338,14 @@ class Matrix {
 	
 	//
 	// scalar power
+	// var mMatrix = matrix1.power( value );
 	// var mMatrix = matrix1.pow( value );
 	//
 	public function power( exp:Float ):Matrix {
+		return pow( exp );
+	}
+		
+	public function pow( exp:Float ):Matrix {
 		
 		var resultMatrix = new Matrix( rows, columns );
 		for ( row in 0...rows ) {
