@@ -28,10 +28,6 @@
 	<td>LA.shape(a, n-1) or a.shape(n-1)</td>
 	<td>get the number of elements of the n-th dimension of array a. (Note that MATLAB® uses 1 based indexing while Python and Haxe use 0 based indexing 0 = rows, 1 = columns</td>
 </tr><tr>
-	<td>length(a)</td><td></td>
-	<td>LA.length(a) or a.length</td>
-	<td>the number of rows or columns, whichever is greater (this odd definition is used for compatibility with MATLAB)</td>
-</tr><tr>
 	<td>[ 1 2 3; 4 5 6 ]</td><td>array([[1.,2.,3.], [4.,5.,6.]])</td>
 	<td>Matrix.fromString( "1 2 3; 4 5 6" ) or Matrix.fromArray2( [[1, 2, 3],[4, 5, 6]] )</td><td>2x3 matrix literal</td>
 </tr><tr>
@@ -148,9 +144,11 @@
 </tr><tr>
 	<td>repmat(a, m, n)</td><td>tile(a, (m, n))</td><td>todo</td><td>create m by n copies of a</td>
 </tr><tr>
-	<td>[a b]</td><td>concatenate((a,b),1) or hstack((a,b)) or column_stack((a,b)) or c_[a,b]</td><td>todo</td><td>concatenate columns of a and b</td>
+	<td>[a b]</td><td>concatenate((a,b),1) or hstack((a,b)) or column_stack((a,b)) or c_[a,b]</td>
+	<td>LA.concatenate( a,b, 1 ) or a.concatenate( b, 1 ) or LA.hstack( a, b )</td><td>concatenate columns of a and b</td>
 </tr><tr>
-	<td>[a; b]</td><td>concatenate((a,b)) or vstack((a,b)) or r_[a,b]</td><td>todo</td><td>concatenate rows of a and b</td>
+	<td>[a; b]</td><td>concatenate((a,b)) or vstack((a,b)) or r_[a,b]</td>
+	<td>LA.concatenate( a,b ) or a.concatenate( b ) or LA.vstack( a, b )</td><td>concatenate rows of a and b</td>
 </tr><tr>
 	<td>max(max(a))</td><td>a.max()</td><td>todo</td><td>maximum element of a (with ndims(a)<=2 for matlab)</td>
 </tr><tr>

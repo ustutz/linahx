@@ -6,12 +6,20 @@ package linahx;
  */
 class LA {
 
-	public static function zeros( rows:Int, columns:Int ):Matrix {
-		return new Matrix( rows, columns, 0 );
+	public static function column_stack( matrix1:Matrix, matrix2:Matrix ):Matrix {
+		return matrix1.concatenate( matrix2, 1 );
 	}
 	
-	public static function ones( rows:Int, columns:Int ):Matrix {
-		return new Matrix( rows, columns, 1 );
+	public static function concatenate( matrix1:Matrix, matrix2:Matrix, dimension:Int = 0 ):Matrix {
+		return matrix1.concatenate( matrix2, dimension );
+	}
+	
+	public static function divide( matrix1:Matrix, matrix2:Matrix ):Matrix {
+		return matrix1.divide( matrix2 );
+	}
+	
+	public static function dot( matrix1:Matrix, matrix2:Matrix ):Matrix {
+		return matrix1.dot( matrix2 );
 	}
 	
 	public static function eye( n:Int ):Matrix {
@@ -21,6 +29,22 @@ class LA {
 			e.data[i][i] = 1;
 		}
 		return e;
+	}
+	
+	public static function hstack( matrix1:Matrix, matrix2:Matrix ):Matrix {
+		return matrix1.concatenate( matrix2, 1 );
+	}
+	
+	public static function multiply( matrix1:Matrix, matrix2:Matrix ):Matrix {
+		return matrix1.multiply( matrix2 );
+	}
+	
+	public static function ones( rows:Int, columns:Int ):Matrix {
+		return new Matrix( rows, columns, 1 );
+	}
+	
+	public static function power( matrix1:Matrix, exp:Float ):Matrix {
+		return matrix1.power( exp );
 	}
 	
 	public static function rand( rows:Int, columns:Int ):Matrix {
@@ -34,24 +58,8 @@ class LA {
 		return r;
 	}
 	
-	public static function divide( matrix1:Matrix, matrix2:Matrix ):Matrix {
-		return matrix1.divide( matrix2 );
-	}
-	
-	public static function dot( matrix1:Matrix, matrix2:Matrix ):Matrix {
-		return matrix1.dot( matrix2 );
-	}
-	
-	public static function length( matrix:Matrix ):Int {
-		return matrix.length;
-	}
-	
-	public static function multiply( matrix1:Matrix, matrix2:Matrix ):Matrix {
-		return matrix1.multiply( matrix2 );
-	}
-	
-	public static function pow( matrix1:Matrix, exp:Float ):Matrix {
-		return matrix1.pow( exp );
+	public static function row_stack( matrix1:Matrix, matrix2:Matrix ):Matrix {
+		return matrix1.concatenate( matrix2 );
 	}
 	
 	public static function sdivide( matrix1:Matrix, value:Float ):Matrix {
@@ -72,6 +80,14 @@ class LA {
 	
 	public static function sum( matrix:Matrix, ?dimension ):Matrix {
 		return matrix.sum( dimension );
+	}
+	
+	public static function vstack( matrix1:Matrix, matrix2:Matrix ):Matrix {
+		return matrix1.concatenate( matrix2 );
+	}
+	
+	public static function zeros( rows:Int, columns:Int ):Matrix {
+		return new Matrix( rows, columns, 0 );
 	}
 	
 }

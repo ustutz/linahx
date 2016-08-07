@@ -161,6 +161,47 @@ class Matrix {
 		}
 	}
 	
+	public function concatenate( otherMatrix:Matrix, dimension:Int = 0 ):Matrix {
+		
+		if ( dimension == 0 ) {
+			if ( columns != otherMatrix.columns ) {
+				throw "Error: matrix columns must match.\n\nFirst matrix dimensions are " + rows + "x" + columns + ". Second matrix dimensions are " + otherMatrix.rows + "x" + otherMatrix.columns + ".";
+			}
+			
+			var resultMatrix = new Matrix( rows + otherMatrix.rows, columns );
+			for ( row in 0...rows ) {
+				for ( column in 0...columns ) {
+					resultMatrix.data[row][column] = data[row][column];
+				}
+			}
+			for ( row in 0...otherMatrix.rows ) {
+				for ( column in 0...otherMatrix.columns ) {
+					resultMatrix.data[row + rows][column] = otherMatrix.data[row][column];
+				}
+			}
+			return resultMatrix;
+			
+		} else {
+			
+			if ( rows != otherMatrix.rows ) {
+				throw "Error: matrix rows must match.\n\nFirst matrix dimensions are " + rows + "x" + columns + ". Second matrix dimensions are " + otherMatrix.rows + "x" + otherMatrix.columns + ".";
+			}
+			
+			var resultMatrix = new Matrix( rows, columns + otherMatrix.columns );
+			for ( column in 0...columns ) {
+				for ( row in 0...rows ) {
+					resultMatrix.data[row][column] = data[row][column];
+				}
+			}
+			for ( column in 0...otherMatrix.columns ) {
+				for ( row in 0...otherMatrix.rows ) {
+					resultMatrix.data[row][column + columns] = otherMatrix.data[row][column];
+				}
+			}
+			return resultMatrix;
+		}
+	}
+	
 	//
 	// return a copy of the matrix
 	// var matrixCopy = matrix.copy();
@@ -183,7 +224,7 @@ class Matrix {
 	public function divide( otherMatrix:Matrix ):Matrix {
 		
 		if ( columns != otherMatrix.columns || rows != otherMatrix.rows ) {
-			throw "Multiply Error:\nMatrix dimensions must be identical.\n\nFirst matrix dimensions are " + rows + "x" + columns + ". Second matrix dimensions are " + otherMatrix.rows + "x" + otherMatrix.columns + ".";
+			throw "Multiply Error:\nMatrix dimensions must match.\n\nFirst matrix dimensions are " + rows + "x" + columns + ". Second matrix dimensions are " + otherMatrix.rows + "x" + otherMatrix.columns + ".";
 		}
 		
 		var resultMatrix = new Matrix( rows, columns );
@@ -268,7 +309,7 @@ class Matrix {
 	public function multiply( otherMatrix:Matrix ):Matrix {
 		
 		if ( columns != otherMatrix.columns || rows != otherMatrix.rows ) {
-			throw "Multiply Error:\nMatrix dimensions must be identical.\n\nFirst matrix dimensions are " + rows + "x" + columns + ". Second matrix dimensions are " + otherMatrix.rows + "x" + otherMatrix.columns + ".";
+			throw "Multiply Error:\nMatrix dimensions must match.\n\nFirst matrix dimensions are " + rows + "x" + columns + ". Second matrix dimensions are " + otherMatrix.rows + "x" + otherMatrix.columns + ".";
 		}
 		
 		var resultMatrix = new Matrix( rows, columns );
@@ -299,7 +340,7 @@ class Matrix {
 	// scalar power
 	// var mMatrix = matrix1.pow( value );
 	//
-	public function pow( exp:Float ):Matrix {
+	public function power( exp:Float ):Matrix {
 		
 		var resultMatrix = new Matrix( rows, columns );
 		for ( row in 0...rows ) {
@@ -339,6 +380,9 @@ class Matrix {
 		}
 	}
 	
+	//
+	// return the number of elements
+	//
 	public function get_siz():Int {
 		return size;
 	}
@@ -347,12 +391,11 @@ class Matrix {
 		return rows * columns;
 	}
 	
-	public function get_length():Int {
-		if ( rows > columns ) {
-			return rows;
-		} else {
-			return columns;
-		}
+	//
+	// subtract function subtracts another matrix from this one
+	//
+	public function subract( otherMatrix:Matrix ):Matrix {
+		for(
 	}
 	
 	//
