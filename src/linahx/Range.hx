@@ -11,7 +11,7 @@ class Range {
 		
 		if ( step == 0 ) {
 			step = 1;
-			trace( "Warning: step cannot be 0. Changed to 1." );
+			//trace( "Warning: step cannot be 0. Changed to 1." );
 		}
 		
 		if ( end >= start ) {
@@ -20,7 +20,7 @@ class Range {
 			step = Std.int(-Math.abs( step ));
 		}
 		
-		var length = Std.int((end - start ) / step ); //trace( "length " + length );
+		var length = Math.round((end - start ) / step ); //trace( "length " + length );
 		var range = new Vector<Int>( length );
 		
 		var value = start;

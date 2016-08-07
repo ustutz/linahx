@@ -53,11 +53,11 @@
 	<td>a([2,4,5],[1,3])</td><td>a[ix_([1,3,4],[0,2])]</td>
 	<td>a.get( [2, 4, 5], [1, 3] )</td><td>rows 2,4 and 5 and columns 1 and 3. This allows the matrix to be modified, and doesn’t require a regular slice.</td>
 </tr><tr>
-	<td>a(3:2:21,:)</td><td>a[ 2:21:2,:]</td><td>todo</td><td>every other row of a, starting with the third and going to the twenty-first</td>
+	<td>a(3:2:21,:)</td><td>a[ 2:21:2,:]</td><td>a.get( Range.int( 3, 21, 2 ), null )</td><td>every other row of a, starting with the third and going to the twenty-first</td>
 </tr><tr>
-	<td>a(1:2:end,:)</td><td>a[ ::2,:]</td><td>todo</td><td>every other row of a, starting with the first</td>
+	<td>a(1:2:end,:)</td><td>a[ ::2,:]</td><td>a.get( Range.int( 0, a.rows, 2 ), null )</td><td>every other row of a, starting with the first</td>
 </tr><tr>
-	<td>a(end:-1:1,:) or flipud(a)</td><td>a[ ::-1,:]</td><td>todo</td><td>a with rows in reverse order</td>
+	<td>a(end:-1:1,:) or flipud(a)</td><td>a[ ::-1,:]</td><td>a.get( Range.int( a.rows-1, -1 ), null )</td><td>a with rows in reverse order</td>
 </tr><tr>
 	<td>a([1:end 1],:)</td><td>a[r_[:len(a),0]]</td><td>todo</td><td>a with copy of the first row appended to the end</td>
 </tr><tr>

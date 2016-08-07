@@ -30,8 +30,8 @@ class RangeTest {
 		Assert.isTrue( r3[4] == 8 );
 		
 		var r4 = Range.int( 4, 15, 2 );
-		Assert.isTrue( r4.length == 5 );
-		Assert.isTrue( r4[4] == 12 );
+		Assert.isTrue( r4.length == 6 );
+		Assert.isTrue( r4[5] == 14 );
 		
 		var r5 = Range.int( 4, 8, 0 );
 		Assert.isTrue( r5.length == 4 );
