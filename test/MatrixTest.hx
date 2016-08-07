@@ -136,6 +136,18 @@ class MatrixTest {
 	}
 	
 	@Test
+	public function testTranspose():Void {
+		
+		var matrix = Matrix.fromString( "1 2 3; 4 5 6" );
+		var transposedMatrix = matrix.transpose();
+		
+		Assert.areEqual( matrix.rows, transposedMatrix.columns );
+		Assert.areEqual( matrix.columns, transposedMatrix.rows );
+		Assert.areEqual( matrix.data[0][1], transposedMatrix.data[1][0] );
+		
+	}
+	
+	@Test
 	public function testZeros():Void {
 		
 		var matrix0 = new Matrix( 3, 2, 0 );
