@@ -3,6 +3,7 @@ import massive.munit.TestSuite;
 import LATest;
 import MatrixCreationTest;
 import MatrixTest;
+import RangeTest;
 
 /**
  * Auto generated Test Suite for MassiveUnit.
@@ -19,5 +20,6 @@ class TestSuite extends massive.munit.TestSuite
 		add(LATest);
 		add(MatrixCreationTest);
 		add(MatrixTest);
+		add(RangeTest);
 	}
 }

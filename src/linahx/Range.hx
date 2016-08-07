@@ -7,17 +7,26 @@ import haxe.ds.Vector;
  */
 class Range {
 
-	public static function int( start:Int, end:Int, step:Int = 1 ):Array<Int> {
+	public static function int( start:Int, end:Int, step:Int = 1 ):Array<Int> { //trace( "new Range " + start, end, step );
 		
-		var length = Std.int((end - start ) / step ); trace( "length " + length );
+		if ( step == 0 ) {
+			step = 1;
+			trace( "Warning: step cannot be 0. Changed to 1." );
+		}
+		
+		if ( end >= start ) {
+			step = Std.int( Math.abs( step ));
+		} else {
+			step = Std.int(-Math.abs( step ));
+		}
+		
+		var length = Std.int((end - start ) / step ); //trace( "length " + length );
 		var range = new Vector<Int>( length );
 		
-		var i = start;
-		while( i < end ) {
-			
-			trace( "assign " + i + " to element " + (i - start ));
-			range[i - start] = i;
-			i += step;
+		var value = start;
+		for ( i in 0...length ) { //trace( "assign " + value + " to element " + i );
+			range[i] = value;
+			value += step;
 		}
 		
 		return range.toArray();

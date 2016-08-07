@@ -17,14 +17,16 @@
 	<td>is always 2</td><td>get the number of dimensions of a matrix</td>
 </tr><tr>
 	<td>numel(a)</td><td>size(a) or a.siz</td>
-	<td>LA.size(a) or a.siz or a.size</td><td>get the number of elements of an array</td>
+	<td>LA.size(a) or a.siz or a.size</td>
+	<td>get the number of elements of a matrix</td>
 </tr><tr>
 	<td>size(a)</td><td>shape(a) or a.shape</td>
-	<td>LA.shape(a) or a.shape()</td><td>get the “size” of the matrix</td>
+	<td>LA.shape(a) or a.shape()</td>
+	<td>get the “size” of the matrix( rows and columns )</td>
 </tr><tr>
 	<td>size(a,n)</td><td>a.shape[n-1]</td>
 	<td>LA.shape(a, n-1) or a.shape(n-1)</td>
-	<td>get the number of elements of the n-th dimension of array a. (Note that MATLAB® uses 1 based indexing while Python and Haxe use 0 based indexing</td>
+	<td>get the number of elements of the n-th dimension of array a. (Note that MATLAB® uses 1 based indexing while Python and Haxe use 0 based indexing 0 = rows, 1 = columns</td>
 </tr><tr>
 	<td>[ 1 2 3; 4 5 6 ]</td><td>array([[1.,2.,3.], [4.,5.,6.]])</td>
 	<td>Matrix.fromString( "1 2 3; 4 5 6" ) or Matrix.fromArray2( [[1, 2, 3],[4, 5, 6]] )</td><td>2x3 matrix literal</td>
