@@ -533,12 +533,9 @@ class Matrix {
 	//
 	public function transpose():Matrix {
 		
-		var transposedColumns = rows;
-		var transposedRows = columns;
-		
-		var transposedMatrix = new Matrix( transposedColumns, transposedRows );
-		for ( column in 0...transposedColumns ) {
-			for ( row in 0...transposedRows ) {
+		var transposedMatrix = new Matrix( columns, rows );
+		for ( row in 0...rows ) {
+			for ( column in 0...columns ) {
 				transposedMatrix.data[column][row] = data[row][column];
 			}
 		}
