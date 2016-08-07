@@ -17,5 +17,15 @@ class MatrixTest {
 		Assert.isTrue( matrix0.siz == 6 );
 	}
 	
+	@Test
+	public function testLength():Void {
+		
+		var matrix0 = new Matrix( 3, 2, 0 );
+		Assert.isTrue( matrix0.length == 3 );
+		
+		var matrix1 = new Matrix( 2, 4, 0 );
+		Assert.isTrue( matrix1.length == 4 );
+	}
+	
 
 }

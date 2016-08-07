@@ -42,6 +42,10 @@ class LA {
 		return matrix1.dot( matrix2 );
 	}
 	
+	public static function length( matrix:Matrix ):Int {
+		return matrix.length;
+	}
+	
 	public static function multiply( matrix1:Matrix, matrix2:Matrix ):Matrix {
 		return matrix1.multiply( matrix2 );
 	}

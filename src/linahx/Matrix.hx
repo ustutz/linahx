@@ -17,6 +17,7 @@ class Matrix {
 
 	@var public var siz(get, null ):Int;
 	@var public var size(get, null ):Int;
+	@var public var length(get, null ):Int;
 	
 	//
 	// create matrix from one-dimensional array of floats.
@@ -344,6 +345,14 @@ class Matrix {
 	
 	public function get_size():Int {
 		return rows * columns;
+	}
+	
+	public function get_length():Int {
+		if ( rows > columns ) {
+			return rows;
+		} else {
+			return columns;
+		}
 	}
 	
 	//
