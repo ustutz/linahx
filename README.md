@@ -6,9 +6,9 @@
 
 ####Matrix
 
-A matrix is always a two dimensional Array of type Float. Actually I used the Haxe [Vector<Float>](http://api.haxe.org/haxe/ds/Vector.html) type because it's supposed to be faster.
+A matrix contains always a two dimensional Array of type Float. Actually I used the Haxe [Vector<Float>](http://api.haxe.org/haxe/ds/Vector.html) type because it's supposed to be faster.
 
-####There is a variety of way to create a matrix:
+####There are a variety of ways to create a matrix:
 
 New matrix with 3 rows, 2 columns and default value 0
 
