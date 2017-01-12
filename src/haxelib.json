@@ -1,0 +1,10 @@
+{
+  "name": "linahx",
+  "url" : "https://github.com/ustutz/linahx",
+  "license": "MIT",
+  "tags": ["math"],
+  "description": "Linear algebra library for Haxe. Aims to be similar to NumPy and the linear algebra functionality of Matlab and Octave",
+  "version": "0.1.0",
+  "releasenote": "Initial haxelib release with basic functionality.",
+  "contributors": ["ustutz"]
+}
