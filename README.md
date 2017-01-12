@@ -38,7 +38,7 @@ You can set custom column and row separators in the method arguments
     matrix = Matrix.fromString( "1, 2, 3\n 4, 5, 6", ",", "\n" );
 
 
-You can see the currently implemented features in this [html document](https://github.com/ustutz/linahx/blob/master/documentation/index.html).
+You can see the currently implemented features in this [Feature matrix](https://ustutz.github.io/linahx/).
 Also check the source code for more information on the implemented methods.
 
 I will implement new features when I need them for my own projects. But feel free to fork the repository and add them yourself.
