@@ -1,12 +1,8 @@
 package linahx;
 
-/**
- * ...
- * @author Urs Stutz
- */
 class LA {
 
-	public static function column_stack( matrix1:Matrix, matrix2:Matrix ):Matrix {
+/*	public static function column_stack( matrix1:Matrix, matrix2:Matrix ):Matrix {
 		return matrix1.concatenate( matrix2, 1 );
 	}
 	
@@ -21,17 +17,17 @@ class LA {
 	public static function dot( matrix1:Matrix, matrix2:Matrix ):Matrix {
 		return matrix1.dot( matrix2 );
 	}
-	
+*/	
 	public static function eye( n:Int ):Matrix {
 		
 		var e = new Matrix( n, n, 0 );
 		for ( i in 0...n ) {
-			e.data[i][i] = 1;
+			e[i][i] = 1;
 		}
 		return e;
 	}
 	
-	public static function hstack( matrix1:Matrix, matrix2:Matrix ):Matrix {
+/*	public static function hstack( matrix1:Matrix, matrix2:Matrix ):Matrix {
 		return matrix1.concatenate( matrix2, 1 );
 	}
 	
@@ -50,19 +46,19 @@ class LA {
 	public static function power( matrix1:Matrix, exp:Float ):Matrix {
 		return matrix1.pow( exp );
 	}
-	
+*/	
 	public static function rand( rows:Int, columns:Int ):Matrix {
 		
 		var r = new Matrix( rows, columns, 0.0 );
 		for ( row in 0...r.rows ) {
 			for ( column in 0...r.columns ) {
-				r.data[row][column] = Math.random();
+				r[row][column] = Math.random();
 			}
 		}
 		return r;
 	}
 	
-	public static function row_stack( matrix1:Matrix, matrix2:Matrix ):Matrix {
+/*	public static function row_stack( matrix1:Matrix, matrix2:Matrix ):Matrix {
 		return matrix1.concatenate( matrix2 );
 	}
 	
@@ -118,5 +114,5 @@ class LA {
 	public static function zeros( rows:Int, columns:Int ):Matrix {
 		return new Matrix( rows, columns, 0 );
 	}
-	
+*/	
 }

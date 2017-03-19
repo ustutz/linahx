@@ -1,10 +1,6 @@
 package linahx;
 import haxe.ds.Vector;
 
-/**
- * ...
- * @author Urs Stutz
- */
 class Range {
 
 	public static function int( start:Int, end:Int, step:Int = 1 ):Array<Int> { //trace( "new Range " + start, end, step );
