@@ -25,7 +25,11 @@ abstract Matrix(Vector<Vector<Float>>) {
 	// return the number of columns
 	public var columns(get, never):Int;
 	public function get_columns():Int {
-		return this[0].length;
+		if( rows > 0 ) {
+			return this[0].length;
+		} else {
+			return 0;
+		}
 	}
 	
 	public function new( rows:Int, columns:Int, ?defaultvalue:Float ) {
