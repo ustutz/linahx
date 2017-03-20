@@ -2,9 +2,7 @@ package;
 
 import linahx.LA;
 import linahx.Matrix;
-import massive.munit.util.Timer;
 import massive.munit.Assert;
-import massive.munit.async.AsyncFactory;
 
 class LATest {
 	
@@ -76,7 +74,7 @@ class LATest {
 		var matrix1 = Matrix.fromString( "1 2 3; 4 5 6" );
 		var matrix2 = Matrix.fromString( "2 2 2; 3 3 3" );
 		
-		var dotMatrix = LA.multiply( matrix1, matrix2 );
+		var dotMatrix = matrix1 * matrix2;
 		
 		Assert.isTrue( dotMatrix.rows == 2 );
 		Assert.isTrue( dotMatrix.columns == 3 );

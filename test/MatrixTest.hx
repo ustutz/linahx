@@ -2,9 +2,7 @@ package;
 
 import linahx.LA;
 import linahx.Matrix;
-import massive.munit.util.Timer;
 import massive.munit.Assert;
-import massive.munit.async.AsyncFactory;
 
 class MatrixTest {
 	
@@ -127,11 +125,11 @@ class MatrixTest {
 		var matrix1 = LA.zeros( 2, 3 );
 		var matrix2 = LA.ones( 2, 3 );
 		
-		var addedMatrix = matrix1 - matrix2;
-		Assert.isTrue( addedMatrix[0][0] == -1 );
+		var subractedMatrix = matrix1 - matrix2;
+		Assert.isTrue( subractedMatrix[0][0] == -1 );
 		
-		var scalarAddedMatrix = matrix1 - 4;
-		Assert.isTrue( scalarAddedMatrix[0][0] == -4 );
+		var scalarSubtractedMatrix = matrix1 - 4;
+		Assert.isTrue( scalarSubtractedMatrix[0][0] == -4 );
 		
 	}
 	
