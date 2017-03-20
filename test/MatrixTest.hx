@@ -18,17 +18,17 @@ class MatrixTest {
 		var autoSumMatrix1 = matrix1.sum();
 		Assert.isTrue( autoSumMatrix1.rows == 1 );
 		Assert.isTrue( autoSumMatrix1.columns == 3 );
-		Assert.isTrue( autoSumMatrix1.data[0][0] == 5 );
+		Assert.isTrue( autoSumMatrix1[0][0] == 5 );
 		
 		var columnSumMatrix1 = matrix1.sum( 0 );
 		Assert.isTrue( columnSumMatrix1.rows == 1 );
 		Assert.isTrue( columnSumMatrix1.columns == 3 );
-		Assert.isTrue( columnSumMatrix1.data[0][0] == 5 );
+		Assert.isTrue( columnSumMatrix1[0][0] == 5 );
 		
 		var rowSumMatrix1 = matrix1.sum( 1 );
 		Assert.isTrue( rowSumMatrix1.rows == 2 );
 		Assert.isTrue( rowSumMatrix1.columns == 1 );
-		Assert.isTrue( rowSumMatrix1.data[0][0] == 6 );
+		Assert.isTrue( rowSumMatrix1[0][0] == 6 );
 		
 		
 		var matrix2 = Matrix.fromString( "1;0;5" );
@@ -36,17 +36,17 @@ class MatrixTest {
 		var autoSumMatrix2 = matrix2.sum();
 		Assert.isTrue( autoSumMatrix2.rows == 1 );
 		Assert.isTrue( autoSumMatrix2.columns == 1 );
-		Assert.isTrue( autoSumMatrix2.data[0][0] == 6 );
+		Assert.isTrue( autoSumMatrix2[0][0] == 6 );
 		
 		var columnSumMatrix2 = matrix2.sum( 0 );
 		Assert.isTrue( columnSumMatrix2.rows == 1 );
 		Assert.isTrue( columnSumMatrix2.columns == 1 );
-		Assert.isTrue( columnSumMatrix2.data[0][0] == 6 );
+		Assert.isTrue( columnSumMatrix2[0][0] == 6 );
 		
 		var rowSumMatrix2 = matrix2.sum( 1 );
 		Assert.isTrue( rowSumMatrix2.rows == 3 );
 		Assert.isTrue( rowSumMatrix2.columns == 1 );
-		Assert.isTrue( rowSumMatrix2.data[0][0] == 1 );
+		Assert.isTrue( rowSumMatrix2[0][0] == 1 );
 		
 		
 		var matrix3 = Matrix.fromString( "1 0 5" );
@@ -54,17 +54,17 @@ class MatrixTest {
 		var autoSumMatrix3 = matrix3.sum();
 		Assert.isTrue( autoSumMatrix3.rows == 1 );
 		Assert.isTrue( autoSumMatrix3.columns == 1 );
-		Assert.isTrue( autoSumMatrix3.data[0][0] == 6 );
+		Assert.isTrue( autoSumMatrix3[0][0] == 6 );
 		
 		var columnSumMatrix3 = matrix3.sum( 0 );
 		Assert.isTrue( columnSumMatrix3.rows == 1 );
 		Assert.isTrue( columnSumMatrix3.columns == 3 );
-		Assert.isTrue( columnSumMatrix3.data[0][0] == 1 );
+		Assert.isTrue( columnSumMatrix3[0][0] == 1 );
 		
 		var rowSumMatrix3 = matrix3.sum( 1 );
 		Assert.isTrue( rowSumMatrix3.rows == 1 );
 		Assert.isTrue( rowSumMatrix3.columns == 1 );
-		Assert.isTrue( rowSumMatrix3.data[0][0] == 6 );
+		Assert.isTrue( rowSumMatrix3[0][0] == 6 );
 		
 		
 		var matrix4 = Matrix.fromString( "1" );
@@ -72,17 +72,17 @@ class MatrixTest {
 		var autoSumMatrix4 = matrix4.sum();
 		Assert.isTrue( autoSumMatrix4.rows == 1 );
 		Assert.isTrue( autoSumMatrix4.columns == 1 );
-		Assert.isTrue( autoSumMatrix4.data[0][0] == 1 );
+		Assert.isTrue( autoSumMatrix4[0][0] == 1 );
 		
 		var columnSumMatrix4 = matrix4.sum( 0 );
 		Assert.isTrue( columnSumMatrix4.rows == 1 );
 		Assert.isTrue( columnSumMatrix4.columns == 1 );
-		Assert.isTrue( columnSumMatrix4.data[0][0] == 1 );
+		Assert.isTrue( columnSumMatrix4[0][0] == 1 );
 		
 		var rowSumMatrix4 = matrix4.sum( 1 );
 		Assert.isTrue( rowSumMatrix4.rows == 1 );
 		Assert.isTrue( rowSumMatrix4.columns == 1 );
-		Assert.isTrue( rowSumMatrix4.data[0][0] == 1 );
+		Assert.isTrue( rowSumMatrix4[0][0] == 1 );
 		
 	}
 	
@@ -92,11 +92,11 @@ class MatrixTest {
 		var matrix1 = LA.zeros( 2, 3 );
 		var matrix2 = LA.ones( 2, 3 );
 		
-		var addedMatrix = matrix1.add( matrix2 );
-		Assert.isTrue( addedMatrix.data[0][0] == 1 );
+		var addedMatrix = matrix1 + matrix2;
+		Assert.isTrue( addedMatrix[0][0] == 1 );
 		
-		var scalarAddedMatrix = matrix1.sadd( 4 );
-		Assert.isTrue( scalarAddedMatrix.data[0][0] == 4 );
+		var scalarAddedMatrix = matrix1 + 4;
+		Assert.isTrue( scalarAddedMatrix[0][0] == 4 );
 		
 	}
 	
@@ -109,7 +109,7 @@ class MatrixTest {
 		
 		Assert.isTrue( verticalConcatenatedMatrix.rows == 3 );
 		Assert.isTrue( verticalConcatenatedMatrix.columns == 3 );
-		Assert.isTrue( verticalConcatenatedMatrix.data[1][1] == 1 );
+		Assert.isTrue( verticalConcatenatedMatrix[1][1] == 1 );
 		
 		var matrix3 = LA.zeros( 4, 1 );
 		var matrix4 = LA.ones( 4, 2 );
@@ -117,7 +117,7 @@ class MatrixTest {
 		
 		Assert.isTrue( horizontalConcatenatedMatrix.rows == 4 );
 		Assert.isTrue( horizontalConcatenatedMatrix.columns == 3 );
-		Assert.isTrue( horizontalConcatenatedMatrix.data[1][1] == 1 );
+		Assert.isTrue( horizontalConcatenatedMatrix[1][1] == 1 );
 		
 	}
 
@@ -127,11 +127,11 @@ class MatrixTest {
 		var matrix1 = LA.zeros( 2, 3 );
 		var matrix2 = LA.ones( 2, 3 );
 		
-		var addedMatrix = matrix1.subtract( matrix2 );
-		Assert.isTrue( addedMatrix.data[0][0] == -1 );
+		var addedMatrix = matrix1 - matrix2;
+		Assert.isTrue( addedMatrix[0][0] == -1 );
 		
-		var scalarAddedMatrix = matrix1.ssubtract( 4 );
-		Assert.isTrue( scalarAddedMatrix.data[0][0] == -4 );
+		var scalarAddedMatrix = matrix1 - 4;
+		Assert.isTrue( scalarAddedMatrix[0][0] == -4 );
 		
 	}
 	
@@ -143,7 +143,7 @@ class MatrixTest {
 		
 		Assert.areEqual( matrix.rows, transposedMatrix.columns );
 		Assert.areEqual( matrix.columns, transposedMatrix.rows );
-		Assert.areEqual( matrix.data[0][1], transposedMatrix.data[1][0] );
+		Assert.areEqual( matrix[0][1], transposedMatrix[1][0] );
 		
 	}
 	

@@ -55,7 +55,6 @@ class Matrix_old {
 	// create matrix from String that is loaded from a CSV file.
 	//
 	public static function fromCSV( csvString:String, columnSeparator:String, rowSeparator:String = CHARCODE_NEWLINE ):Matrix {
-		
 		return Matrix.fromString( csvString, columnSeparator, rowSeparator );
 	}
 	

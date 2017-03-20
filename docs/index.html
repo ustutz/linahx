@@ -44,10 +44,10 @@
 	<td>[ a b; c d ]</td><td>vstack([hstack([a,b]), hstack([c,d])]) or bmat('a b; c d').A</td><td>todo</td><td>construct a matrix from blocks a, b, c, and d</td>
 </tr><tr>
 	<td>a(end)</td><td>a[-1]</td>
-	<td>a.data[0][a.data[0].length -1]</td><td>access last element in the 1xn matrix a</td>
+	<td>a[0][a[0].length -1]</td><td>access last element in the 1xn matrix a</td>
 </tr><tr>
 	<td>a(2,5)</td><td>a[1,4]</td>
-	<td>a.data[1][4] (read and write),  a.get( [1], [4] ) (only read)</td><td>access element in second row, fifth column</td>
+	<td>a[1][4] (read and write),  a.get( [1], [4] ) (only read)</td><td>access element in second row, fifth column</td>
 </tr><tr>
 	<td>a(2,:)</td><td>a[1] or a[1,:]</td>
 	<td>a.get( [1], null )</td><td>entire second row of a</td>

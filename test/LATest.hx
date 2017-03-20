@@ -17,7 +17,7 @@ class LATest {
 		Assert.isTrue( matrix0.rows == 3 );
 		Assert.isTrue( matrix0.columns == 2 );
 		
-		Assert.isTrue( matrix0.data[1][1] == 0 );
+		Assert.isTrue( matrix0[1][1] == 0 );
 		
 	}
 	
@@ -28,7 +28,7 @@ class LATest {
 		Assert.isTrue( matrix0.rows == 3 );
 		Assert.isTrue( matrix0.columns == 2 );
 		
-		Assert.isTrue( matrix0.data[1][1] == 1 );
+		Assert.isTrue( matrix0[1][1] == 1 );
 		
 	}
 	
@@ -39,8 +39,8 @@ class LATest {
 		Assert.isTrue( matrix0.rows == 3 );
 		Assert.isTrue( matrix0.columns == 3 );
 		
-		Assert.isTrue( matrix0.data[0][1] == 0 );
-		Assert.isTrue( matrix0.data[1][1] == 1 );
+		Assert.isTrue( matrix0[0][1] == 0 );
+		Assert.isTrue( matrix0[1][1] == 1 );
 		
 	}
 	
@@ -51,8 +51,8 @@ class LATest {
 		Assert.isTrue( matrix0.rows == 2 );
 		Assert.isTrue( matrix0.columns == 5 );
 		
-		Assert.isTrue( matrix0.data[0][1] >= 0 );
-		Assert.isTrue( matrix0.data[0][1] < 1 );
+		Assert.isTrue( matrix0[0][1] >= 0 );
+		Assert.isTrue( matrix0[0][1] < 1 );
 		
 	}
 	
@@ -66,8 +66,8 @@ class LATest {
 		
 		Assert.isTrue( dotMatrix.rows == 2 );
 		Assert.isTrue( dotMatrix.columns == 1 );
-		Assert.isTrue( dotMatrix.data[0][0] == 14 );
-		Assert.isTrue( dotMatrix.data[1][0] == 32 );
+		Assert.isTrue( dotMatrix[0][0] == 14 );
+		Assert.isTrue( dotMatrix[1][0] == 32 );
 	}
 	
 	@Test
@@ -80,8 +80,8 @@ class LATest {
 		
 		Assert.isTrue( dotMatrix.rows == 2 );
 		Assert.isTrue( dotMatrix.columns == 3 );
-		Assert.isTrue( dotMatrix.data[0][0] == 2 );
-		Assert.isTrue( dotMatrix.data[1][2] == 18 );
+		Assert.isTrue( dotMatrix[0][0] == 2 );
+		Assert.isTrue( dotMatrix[1][2] == 18 );
 	}
 	
 	@Test
@@ -98,7 +98,7 @@ class LATest {
 		
 		Assert.isTrue( shapeMatrix.rows == 1 );
 		Assert.isTrue( shapeMatrix.columns == 2 );
-		Assert.isTrue( shapeMatrix.data[0][1] == 3 );
+		Assert.isTrue( shapeMatrix[0][1] == 3 );
 	}
 	
 	@Test

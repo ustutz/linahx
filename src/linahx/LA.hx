@@ -2,7 +2,7 @@ package linahx;
 
 class LA {
 
-/*	public static function column_stack( matrix1:Matrix, matrix2:Matrix ):Matrix {
+	public static function column_stack( matrix1:Matrix, matrix2:Matrix ):Matrix {
 		return matrix1.concatenate( matrix2, 1 );
 	}
 	
@@ -11,13 +11,13 @@ class LA {
 	}
 	
 	public static function divide( matrix1:Matrix, matrix2:Matrix ):Matrix {
-		return matrix1.divide( matrix2 );
+		return matrix1 / matrix2;
 	}
 	
 	public static function dot( matrix1:Matrix, matrix2:Matrix ):Matrix {
 		return matrix1.dot( matrix2 );
 	}
-*/	
+	
 	public static function eye( n:Int ):Matrix {
 		
 		var e = new Matrix( n, n, 0 );
@@ -27,7 +27,7 @@ class LA {
 		return e;
 	}
 	
-/*	public static function hstack( matrix1:Matrix, matrix2:Matrix ):Matrix {
+	public static function hstack( matrix1:Matrix, matrix2:Matrix ):Matrix {
 		return matrix1.concatenate( matrix2, 1 );
 	}
 	
@@ -46,7 +46,7 @@ class LA {
 	public static function power( matrix1:Matrix, exp:Float ):Matrix {
 		return matrix1.pow( exp );
 	}
-*/	
+	
 	public static function rand( rows:Int, columns:Int ):Matrix {
 		
 		var r = new Matrix( rows, columns, 0.0 );
@@ -58,7 +58,7 @@ class LA {
 		return r;
 	}
 	
-/*	public static function row_stack( matrix1:Matrix, matrix2:Matrix ):Matrix {
+	public static function row_stack( matrix1:Matrix, matrix2:Matrix ):Matrix {
 		return matrix1.concatenate( matrix2 );
 	}
 	
@@ -95,7 +95,7 @@ class LA {
 		if ( matrix.columns == 0 && matrix.rows == 0 ) { //trace( "matrix.columns == 0 && matrix.rows == 0" );
 			return 0;
 		} if ( matrix.columns == 1 && matrix.rows == 1 ) { //trace( "matrix.columns == 1 && matrix.rows == 1" );
-			return matrix.data[0][0];
+			return matrix[0][0];
 		} else {
 			if ( matrix.rows > 1 ) { //trace( "matrix.rows > 1" );
 				matrix = matrix.sum( 0 );
@@ -103,7 +103,7 @@ class LA {
 			if ( matrix.columns > 1 ) { //trace( "matrix.columns > 1" );
 				matrix = matrix.sum( 1 );
 			}
-			return matrix.data[0][0];
+			return matrix[0][0];
 		}
 	}
 	
@@ -114,5 +114,5 @@ class LA {
 	public static function zeros( rows:Int, columns:Int ):Matrix {
 		return new Matrix( rows, columns, 0 );
 	}
-*/	
+	
 }
