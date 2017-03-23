@@ -1,228 +1,538 @@
+<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Features</title>
+
+<head>
+	<meta charset="utf-8">
+	<title>Features</title>
 	<link rel="stylesheet" href="css/main.css">
 </head>
 
 <body>
 
-<p>Feature Matrix of Matlab, Numpy and linahx</p>
+	<p>Feature Matrix of Matlab, Numpy and linahx</p>
 
-<table>
-<tr class="headline">
-	<td>MATLAB®</td><td>NumPy</td><td>linahx</td><td>Notes</td>
-</tr><tr>
-	<td>ndims(a)</td><td>ndim(a) or a.ndim</td>
-	<td>is always 2</td><td>get the number of dimensions of a matrix</td>
-</tr><tr>
-	<td>numel(a)</td><td>size(a) or a.siz</td>
-	<td>LA.size(a) or a.siz or a.size</td>
-	<td>get the number of elements of a matrix</td>
-</tr><tr>
-	<td>size(a)</td><td>shape(a) or a.shape</td>
-	<td>LA.shape(a) or a.shape()</td>
-	<td>get the “size” of the matrix( rows and columns )</td>
-</tr><tr>
-	<td>size(a,n)</td><td>a.shape[n-1]</td>
-	<td>LA.shape(a, n-1) or a.shape(n-1)</td>
-	<td>get the number of elements of the n-th dimension of matrix a. (Note that MATLAB® uses 1 based indexing while Python and Haxe use 0 based indexing 0 = rows, 1 = columns</td>
-</tr><tr>
-	<td>sum(a, n)</td>
-	<td>&nbsp;</td>
-	<td>LA.sum( a, n ) or a.sum( n )</td>
-	<td>sum of the elements of the n-th dimension of matrix a. 0 = rows, 1 = columns. n is optional</td>
-</tr><tr>
-	<td>&nbsp;</td>
-	<td>&nbsp;</td>
-	<td>LA.sumToFloat( a, n )</td>
-	<td>sums all elements of a matrix and returns a float value</td>
-</tr><tr>
-	<td>[ 1 2 3; 4 5 6 ]</td><td>array([[1.,2.,3.], [4.,5.,6.]])</td>
-	<td>Matrix.fromString( "1 2 3; 4 5 6" ) or Matrix.fromArray2( [[1, 2, 3],[4, 5, 6]] )</td><td>2x3 matrix literal</td>
-</tr><tr>
-	<td>[ a b; c d ]</td><td>vstack([hstack([a,b]), hstack([c,d])]) or bmat('a b; c d').A</td><td>todo</td><td>construct a matrix from blocks a, b, c, and d</td>
-</tr><tr>
-	<td>a(end)</td><td>a[-1]</td>
-	<td>a[0][a[0].length -1]</td><td>access last element in the 1xn matrix a</td>
-</tr><tr>
-	<td>a(2,5)</td><td>a[1,4]</td>
-	<td>a[1][4] (read and write),  a.get( [1], [4] ) (only read)</td><td>access element in second row, fifth column</td>
-</tr><tr>
-	<td>a(2,:)</td><td>a[1] or a[1,:]</td>
-	<td>a.get( [1], null )</td><td>entire second row of a</td>
-</tr><tr>
-	<td>a(1:5,:)</td><td>a[0:5] or a[:5] or a[0:5,:]</td>
-	<td>a.get( Range.int( 0, 5 ), null )</td><td>the first five rows of a</td>
-</tr><tr>
-	<td>a(end-4:end,:)</td><td>a[-5:]</td><td>a.get( Range.int( a.rows - 5, a.rows ), null )</td><td>the last five rows of a</td>
-</tr><tr>
-	<td>a(1:3,5:9)</td><td>a[0:3][:,4:9]</td>
-	<td>a.get( Range.int( 0, 3 ), Range.int( 4, 9 ))</td><td>rows one to three and columns five to nine of a. This gives read-only access.</td>
-</tr><tr>
-	<td>a([2,4,5],[1,3])</td><td>a[ix_([1,3,4],[0,2])]</td>
-	<td>a.get( [2, 4, 5], [1, 3] )</td><td>rows 2,4 and 5 and columns 1 and 3. This allows the matrix to be modified, and doesn’t require a regular slice.</td>
-</tr><tr>
-	<td>a(3:2:21,:)</td><td>a[ 2:21:2,:]</td><td>a.get( Range.int( 3, 21, 2 ), null )</td><td>every other row of a, starting with the third and going to the twenty-first</td>
-</tr><tr>
-	<td>a(1:2:end,:)</td><td>a[ ::2,:]</td><td>a.get( Range.int( 0, a.rows, 2 ), null )</td><td>every other row of a, starting with the first</td>
-</tr><tr>
-	<td>a(end:-1:1,:) or flipud(a)</td><td>a[ ::-1,:]</td><td>a.get( Range.int( a.rows-1, -1 ), null )</td><td>a with rows in reverse order</td>
-</tr><tr>
-	<td>a([1:end 1],:)</td><td>a[r_[:len(a),0]]</td><td>todo</td><td>a with copy of the first row appended to the end</td>
-</tr><tr>
-	<td>a.'</td><td>a.transpose() or a.T</td><td>a.transpose()</td><td>transpose of a</td>
-</tr><tr>
-	<td>a'</td><td>a.conj().transpose() or a.conj().T</td><td>todo</td><td>conjugate transpose of a</td>
-</tr><tr>
-	<td>a * b</td><td>a.dot(b)</td>
-	<td>LA.dot( a, b ) or a.dot( b )</td><td>matrix multiply</td>
-</tr><tr>
-	<td>a .* b</td><td>a * b</td>
-	<td>a * b</td><td>element-wise multiply</td>
-</tr><tr>
-	<td>a .* b</td><td>a * b</td>
-	<td>a * b</td>
-	<td>scalar multiply</td>
-</tr><tr>
-	<td>a./b</td><td>a/b</td>
-	<td>a / b</td><td>element-wise divide</td>
-</tr><tr>
-	<td>a./b</td><td>a/b</td>
-	<td>a / b</td>
-	<td>scalar divide</td>
-</tr><tr>
-	<td>a.^3</td><td>a**3</td>
-	<td>LA.pow( a, b ) or a.pow( b ) or LA.power( a, b ) or a.power( b ) </td><td>element-wise exponentiation</td>
-</tr><tr>
-	<td>(a>0.5)</td><td>(a>0.5)</td><td>todo</td>
-	<td>matrix whose i,jth element is (a_ij > 0.5). The MATLAB® result is an array of 0s and 1s. The NumPy result is an array of the boolean values False and True. The Haxe result is a matrix of 0s and 1s.</td>
-</tr><tr>
-	<td>find(a>0.5)</td><td>nonzero(a>0.5)</td><td>todo</td><td>find the indices where (a > 0.5)</td>
-</tr><tr>
-	<td>a(:,find(v>0.5))</td><td>a[:,nonzero(v>0.5)[0]]</td><td>todo</td><td>extract the columms of a where vector v > 0.5</td>
-</tr><tr>
-	<td>a(:,find(v>0.5))</td><td>a[:,v.T>0.5]</td><td>todo</td><td>extract the columms of a where column vector v > 0.5</td>
-</tr><tr>
-	<td>a(a<0.5)=0</td><td>a[a<0.5]=0</td><td>todo</td><td>a with elements less than 0.5 zeroed out</td>
-</tr><tr>
-	<td>a .* (a>0.5)</td><td>a * (a>0.5)</td><td>todo</td><td>a with elements less than 0.5 zeroed out</td>
-</tr><tr>
-	<td>a(:) = 3</td><td>a[:] = 3</td><td>todo</td><td>set all values to the same scalar value</td>
-</tr><tr>
-	<td>y=x</td><td>y = x.copy()</td><td>y = x.copy()</td>
-	<td>copy of matrix</td>
-</tr><tr>
-	<td>y=x(2,:)</td><td>y = x[1,:].copy()</td><td>todo</td><td>slices are by reference</td>
-</tr><tr>
-	<td>y=x(:)</td><td>y = x.flatten()</td><td>todo</td><td>turn array into vector (note that this forces a copy)</td>
-</tr><tr>
-	<td>1:10</td><td>arange(1.,11.) or r_[1.:11.] or r_[1:10:10j]</td><td>todo</td><td>create an increasing vector (see note RANGES)</td>
-</tr><tr>
-	<td>0:9</td><td>arange(10.) or r_[:10.] or r_[:9:10j]</td><td>todo</td><td>create an increasing vector (see note RANGES)</td>
-</tr><tr>
-	<td>[1:10]'</td><td>arange(1.,11.)[:, newaxis]</td><td>todo</td><td>create a column vector</td>
-</tr><tr>
-	<td>zeros(3,4)</td><td>zeros((3,4))</td>
-	<td>LA.zeros(3, 4)</td><td>3x4 two-dimensional array full of 64-bit floating point zeros</td>
-</tr><tr>
-	<td>zeros(3,4,5)</td><td>zeros((3,4,5))</td>
-	<td>only 2 dimensional matrixes are supported</td><td>3x4x5 three-dimensional array full of 64-bit floating point zeros</td>
-</tr><tr>
-	<td>ones(3,4)</td><td>ones((3,4))</td>
-	<td>LA.ones(3, 4)</td><td>3x4 two-dimensional array full of 64-bit floating point ones</td>
-</tr><tr>
-	<td>eye(3)</td><td>eye(3)</td>
-	<td>LA.eye(3)</td><td>3x3 identity matrix</td>
-</tr><tr>
-	<td>diag(a)</td><td>diag(a)</td><td>todo</td><td>vector of diagonal elements of a</td>
-</tr><tr>
-	<td>diag(a,0)</td><td>diag(a,0)</td><td>todo</td><td>square diagonal matrix whose nonzero values are the elements of a</td>
-</tr><tr>
-	<td>rand(3,4)</td><td>random.rand(3,4)</td>
-	<td>LA.rand(3,4)</td><td>random 3x4 matrix</td>
-</tr><tr>
-	<td>linspace(1,3,4)</td><td>linspace(1,3,4)</td><td>todo</td><td>4 equally spaced samples between 1 and 3, inclusive</td>
-</tr><tr>
-	<td>[x,y]=meshgrid(0:8,0:5)</td><td>mgrid[0:9.,0:6.] or meshgrid(r_[0:9.],r_[0:6.]</td><td>todo</td><td>two 2D arrays: one of x values, the other of y values</td>
-</tr><tr>
-	<td></td><td>ogrid[0:9.,0:6.] or ix_(r_[0:9.],r_[0:6.]</td><td>todo</td><td>the best way to eval functions on a grid</td>
-</tr><tr>
-	<td>[x,y]=meshgrid([1,2,4],[2,4,5])</td><td>meshgrid([1,2,4],[2,4,5])</td><td>todo</td><td></td>
-</tr><tr>
-	<td></td><td>ix_([1,2,4],[2,4,5])</td><td>todo</td><td>the best way to eval functions on a grid</td>
-</tr><tr>
-	<td>repmat(a, m, n)</td><td>tile(a, (m, n))</td><td>todo</td><td>create m by n copies of a</td>
-</tr><tr>
-	<td>[a b]</td><td>concatenate((a,b),1) or hstack((a,b)) or column_stack((a,b)) or c_[a,b]</td>
-	<td>LA.concatenate( a,b, 1 ) or a.concatenate( b, 1 ) or LA.hstack( a, b )</td><td>concatenate columns of a and b</td>
-</tr><tr>
-	<td>[a; b]</td><td>concatenate((a,b)) or vstack((a,b)) or r_[a,b]</td>
-	<td>LA.concatenate( a,b ) or a.concatenate( b ) or LA.vstack( a, b )</td><td>concatenate rows of a and b</td>
-</tr><tr>
-	<td>max(max(a))</td><td>a.max()</td><td>todo</td><td>maximum element of a (with ndims(a)<=2 for matlab)</td>
-</tr><tr>
-	<td>max(a)</td><td>a.max(0)</td><td>todo</td><td>maximum element of each column of matrix a</td>
-</tr><tr>
-	<td>max(a,[],2)</td><td>a.max(1)</td><td>todo</td><td>maximum element of each row of matrix a</td>
-</tr><tr>
-	<td>max(a,b)</td><td>maximum(a, b)</td><td>todo</td><td>compares a and b element-wise, and returns the maximum value from each pair</td>
-</tr><tr>
-	<td>norm(v)</td><td>sqrt(dot(v,v)) or np.linalg.norm(v)</td><td>todo</td><td>L2 norm of vector v</td>
-</tr><tr>
-	<td>a & b</td><td>logical_and(a,b)</td><td>todo</td><td>element-by-element AND operator (Numpy ufunc) See note LOGICOPS</td>
-</tr><tr>
-	<td>a | b </td><td>logical_or(a,b)</td><td>todo</td><td>element-by-element OR operator (Numpy ufunc) See note LOGICOPS</td>
-</tr><tr>
-	<td>bitand(a,b)</td><td>a & b</td><td>todo</td><td>bitwise AND operator (Python native and Numpy ufunc)</td>
-</tr><tr>
-	<td>bitor(a,b)</td><td>a | b</td><td>todo</td><td>bitwise OR operator (Python native and Numpy ufunc)</td>
-</tr><tr>
-	<td>inv(a)</td><td>linalg.inv(a)</td><td>todo</td><td>inverse of square matrix a</td>
-</tr><tr>
-	<td>pinv(a)</td><td>linalg.pinv(a)</td><td>todo</td><td>pseudo-inverse of matrix a</td>
-</tr><tr>
-	<td>rank(a)</td><td>linalg.matrix_rank(a)</td><td>todo</td><td>matrix rank of a 2D array / matrix a</td>
-</tr><tr>
-	<td>a\b</td><td>linalg.solve(a,b) if a is square; linalg.lstsq(a,b) otherwise</td><td>todo</td><td>solution of a x = b for x</td>
-</tr><tr>
-	<td>b/a</td><td>Solve a.T x.T = b.T instead</td><td>todo</td><td>solution of x a = b for x</td>
-</tr><tr>
-	<td>[U,S,V]=svd(a)</td><td>U, S, Vh = linalg.svd(a), V = Vh.T</td><td>todo</td><td>singular value decomposition of a</td>
-</tr><tr>
-	<td>chol(a)</td><td>linalg.cholesky(a).T</td><td>todo</td><td>cholesky factorization of a matrix (chol(a) in matlab returns an upper triangular matrix, but linalg.cholesky(a) returns a lower triangular matrix)</td>
-</tr><tr>
-	<td>[V,D]=eig(a)</td><td>D,V = linalg.eig(a)</td><td>todo</td><td>eigenvalues and eigenvectors of a</td>
-</tr><tr>
-	<td>[V,D]=eig(a,b)</td><td>V,D = np.linalg.eig(a,b)</td><td>todo</td><td>eigenvalues and eigenvectors of a, b</td>
-</tr><tr>
-	<td>[V,D]=eigs(a,k)</td><td></td><td>todo</td><td>find the k largest eigenvalues and eigenvectors of a</td>
-</tr><tr>
-	<td>[Q,R,P]=qr(a,0)</td><td>Q,R = scipy.linalg.qr(a)</td><td>todo</td><td>QR decomposition</td>
-</tr><tr>
-	<td>[L,U,P]=lu(a)</td><td>L,U = scipy.linalg.lu(a) or LU,P=scipy.linalg.lu_factor(a)</td><td>todo</td><td>LU decomposition (note: P(Matlab) == transpose(P(numpy)) )</td>
-</tr><tr>
-	<td>conjgrad</td><td>scipy.sparse.linalg.cg</td><td>todo</td><td>Conjugate gradients solver</td>
-</tr><tr>
-	<td>fft(a)</td><td>fft(a)</td><td>todo</td><td>Fourier transform of a</td>
-</tr><tr>
-	<td>ifft(a)</td><td>ifft(a)</td><td>todo</td><td>inverse Fourier transform of a</td>
-</tr><tr>
-	<td>sort(a)</td><td>sort(a) or a.sort()</td><td>todo</td><td>sort the matrix</td>
-</tr><tr>
-	<td>[b,I] = sortrows(a,i)</td><td>I = argsort(a[:,i]), b=a[I,:]</td><td>todo</td><td>sort the rows of the matrix</td>
-</tr><tr>
-	<td>regress(y,X)</td><td>linalg.lstsq(X,y)</td><td>todo</td><td>multilinear regression</td>
-</tr><tr>
-	<td>decimate(x, q)</td><td>scipy.signal.resample(x, len(x)/q)</td><td>todo</td><td>downsample with low-pass filtering</td>
-</tr><tr>
-	<td>unique(a)</td><td>unique(a)</td><td>todo</td><td></td>
-</tr><tr>
-	<td>squeeze(a)</td><td>a.squeeze()</td><td>todo</td><td></td>
-</tr>
-</table>
+	<table>
+		<tr class="headline">
+			<td>MATLAB®</td>
+			<td>NumPy</td>
+			<td>linahx</td>
+			<td>Notes</td>
+		</tr>
+		<tr>
+			<td>ndims(a)</td>
+			<td>ndim(a) or a.ndim</td>
+			<td>is always 2</td>
+			<td>get the number of dimensions of a matrix</td>
+		</tr>
+		<tr>
+			<td>numel(a)</td>
+			<td>size(a) or a.siz</td>
+			<td>LA.size(a) or a.siz or a.size</td>
+			<td>get the number of elements of a matrix</td>
+		</tr>
+		<tr>
+			<td>size(a)</td>
+			<td>shape(a) or a.shape</td>
+			<td>LA.shape(a) or a.shape()</td>
+			<td>get the “size” of the matrix( rows and columns )</td>
+		</tr>
+		<tr>
+			<td>size(a,n)</td>
+			<td>a.shape[n-1]</td>
+			<td>LA.shape(a, n-1) or a.shape(n-1)</td>
+			<td>get the number of elements of the n-th dimension of matrix a. (Note that MATLAB® uses 1 based indexing while Python and Haxe use 0 based indexing 0 = rows, 1 = columns</td>
+		</tr>
+		<tr>
+			<td>sum(a, n)</td>
+			<td>&nbsp;</td>
+			<td>LA.sum( a, n ) or a.sum( n )</td>
+			<td>sum of the elements of the n-th dimension of matrix a. 0 = rows, 1 = columns. n is optional</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>LA.sumToFloat( a, n )</td>
+			<td>sums all elements of a matrix and returns a float value</td>
+		</tr>
+		<tr>
+			<td>[ 1 2 3; 4 5 6 ]</td>
+			<td>array([[1.,2.,3.], [4.,5.,6.]])</td>
+			<td>Matrix.fromString( "1 2 3; 4 5 6" ) or Matrix.fromArray2( [[1, 2, 3],[4, 5, 6]] )</td>
+			<td>2x3 matrix literal</td>
+		</tr>
+		<tr>
+			<td>[ a b; c d ]</td>
+			<td>vstack([hstack([a,b]), hstack([c,d])]) or bmat('a b; c d').A</td>
+			<td>todo</td>
+			<td>construct a matrix from blocks a, b, c, and d</td>
+		</tr>
+		<tr>
+			<td>a(end)</td>
+			<td>a[-1]</td>
+			<td>a[0][a[0].length -1]</td>
+			<td>access last element in the 1xn matrix a</td>
+		</tr>
+		<tr>
+			<td>a(2,5)</td>
+			<td>a[1,4]</td>
+			<td>a[1][4] (read and write), a.get( [1], [4] ) (only read)</td>
+			<td>access element in second row, fifth column</td>
+		</tr>
+		<tr>
+			<td>a(2,:)</td>
+			<td>a[1] or a[1,:]</td>
+			<td>a.get( [1], null )</td>
+			<td>entire second row of a</td>
+		</tr>
+		<tr>
+			<td>a(1:5,:)</td>
+			<td>a[0:5] or a[:5] or a[0:5,:]</td>
+			<td>a.get( Range.int( 0, 5 ), null )</td>
+			<td>the first five rows of a</td>
+		</tr>
+		<tr>
+			<td>a(end-4:end,:)</td>
+			<td>a[-5:]</td>
+			<td>a.get( Range.int( a.rows - 5, a.rows ), null )</td>
+			<td>the last five rows of a</td>
+		</tr>
+		<tr>
+			<td>a(1:3,5:9)</td>
+			<td>a[0:3][:,4:9]</td>
+			<td>a.get( Range.int( 0, 3 ), Range.int( 4, 9 ))</td>
+			<td>rows one to three and columns five to nine of a. This gives read-only access.</td>
+		</tr>
+		<tr>
+			<td>a([2,4,5],[1,3])</td>
+			<td>a[ix_([1,3,4],[0,2])]</td>
+			<td>a.get( [2, 4, 5], [1, 3] )</td>
+			<td>rows 2,4 and 5 and columns 1 and 3. This allows the matrix to be modified, and doesn’t require a regular slice.</td>
+		</tr>
+		<tr>
+			<td>a(3:2:21,:)</td>
+			<td>a[ 2:21:2,:]</td>
+			<td>a.get( Range.int( 3, 21, 2 ), null )</td>
+			<td>every other row of a, starting with the third and going to the twenty-first</td>
+		</tr>
+		<tr>
+			<td>a(1:2:end,:)</td>
+			<td>a[ ::2,:]</td>
+			<td>a.get( Range.int( 0, a.rows, 2 ), null )</td>
+			<td>every other row of a, starting with the first</td>
+		</tr>
+		<tr>
+			<td>a(end:-1:1,:) or flipud(a)</td>
+			<td>a[ ::-1,:]</td>
+			<td>a.get( Range.int( a.rows-1, -1 ), null )</td>
+			<td>a with rows in reverse order</td>
+		</tr>
+		<tr>
+			<td>a([1:end 1],:)</td>
+			<td>a[r_[:len(a),0]]</td>
+			<td>todo</td>
+			<td>a with copy of the first row appended to the end</td>
+		</tr>
+		<tr>
+			<td>a.'</td>
+			<td>a.transpose() or a.T</td>
+			<td>a.transpose()</td>
+			<td>transpose of a</td>
+		</tr>
+		<tr>
+			<td>a'</td>
+			<td>a.conj().transpose() or a.conj().T</td>
+			<td>todo</td>
+			<td>conjugate transpose of a</td>
+		</tr>
+		<tr>
+			<td>a * b</td>
+			<td>a.dot(b)</td>
+			<td>LA.dot( a, b ) or a.dot( b )</td>
+			<td>matrix multiply</td>
+		</tr>
+		<tr>
+			<td>a .* b</td>
+			<td>a * b</td>
+			<td>a * b</td>
+			<td>element-wise multiply</td>
+		</tr>
+		<tr>
+			<td>a .* b</td>
+			<td>a * b</td>
+			<td>a * b</td>
+			<td>scalar multiply</td>
+		</tr>
+		<tr>
+			<td>a./b</td>
+			<td>a/b</td>
+			<td>a / b</td>
+			<td>element-wise divide</td>
+		</tr>
+		<tr>
+			<td>a./b</td>
+			<td>a/b</td>
+			<td>a / b</td>
+			<td>scalar divide</td>
+		</tr>
+		<tr>
+			<td>a.^3</td>
+			<td>a**3</td>
+			<td>LA.pow( a, b ) or a.pow( b ) or LA.power( a, b ) or a.power( b ) </td>
+			<td>element-wise exponentiation</td>
+		</tr>
+		<tr>
+			<td>(a&gt;0.5)</td>
+			<td>(a&gt;0.5)</td>
+			<td>todo</td>
+			<td>matrix whose i,jth element is (a_ij &gt; 0.5). The MATLAB® result is an array of 0s and 1s. The NumPy result is an array of the boolean values False and True. The Haxe result is a matrix of 0s and 1s.</td>
+		</tr>
+		<tr>
+			<td>find(a&gt;0.5)</td>
+			<td>nonzero(a&gt;0.5)</td>
+			<td>todo</td>
+			<td>find the indices where (a &gt; 0.5)</td>
+		</tr>
+		<tr>
+			<td>a(:,find(v&gt;0.5))</td>
+			<td>a[:,nonzero(v&gt;0.5)[0]]</td>
+			<td>todo</td>
+			<td>extract the columms of a where vector v &gt; 0.5</td>
+		</tr>
+		<tr>
+			<td>a(:,find(v&gt;0.5))</td>
+			<td>a[:,v.T&gt;0.5]</td>
+			<td>todo</td>
+			<td>extract the columms of a where column vector v &gt; 0.5</td>
+		</tr>
+		<tr>
+			<td>a(a&lt;0.5)=0</td>
+			<td>a[a&lt;0.5]=0</td>
+			<td>todo</td>
+			<td>a with elements less than 0.5 zeroed out</td>
+		</tr>
+		<tr>
+			<td>a .* (a&gt;0.5)</td>
+			<td>a * (a&gt;0.5)</td>
+			<td>todo</td>
+			<td>a with elements less than 0.5 zeroed out</td>
+		</tr>
+		<tr>
+			<td>a(:) = 3</td>
+			<td>a[:] = 3</td>
+			<td>todo</td>
+			<td>set all values to the same scalar value</td>
+		</tr>
+		<tr>
+			<td>y=x</td>
+			<td>y = x.copy()</td>
+			<td>y = x.copy()</td>
+			<td>copy of matrix</td>
+		</tr>
+		<tr>
+			<td>y=x(2,:)</td>
+			<td>y = x[1,:].copy()</td>
+			<td>todo</td>
+			<td>slices are by reference</td>
+		</tr>
+		<tr>
+			<td>y=x(:)</td>
+			<td>y = x.flatten()</td>
+			<td>todo</td>
+			<td>turn array into vector (note that this forces a copy)</td>
+		</tr>
+		<tr>
+			<td>1:10</td>
+			<td>arange(1.,11.) or r_[1.:11.] or r_[1:10:10j]</td>
+			<td>todo</td>
+			<td>create an increasing vector (see note RANGES)</td>
+		</tr>
+		<tr>
+			<td>0:9</td>
+			<td>arange(10.) or r_[:10.] or r_[:9:10j]</td>
+			<td>todo</td>
+			<td>create an increasing vector (see note RANGES)</td>
+		</tr>
+		<tr>
+			<td>[1:10]'</td>
+			<td>arange(1.,11.)[:, newaxis]</td>
+			<td>todo</td>
+			<td>create a column vector</td>
+		</tr>
+		<tr>
+			<td>zeros(3,4)</td>
+			<td>zeros((3,4))</td>
+			<td>LA.zeros(3, 4)</td>
+			<td>3x4 two-dimensional array full of 64-bit floating point zeros</td>
+		</tr>
+		<tr>
+			<td>zeros(3,4,5)</td>
+			<td>zeros((3,4,5))</td>
+			<td>only 2 dimensional matrixes are supported</td>
+			<td>3x4x5 three-dimensional array full of 64-bit floating point zeros</td>
+		</tr>
+		<tr>
+			<td>ones(3,4)</td>
+			<td>ones((3,4))</td>
+			<td>LA.ones(3, 4)</td>
+			<td>3x4 two-dimensional array full of 64-bit floating point ones</td>
+		</tr>
+		<tr>
+			<td>eye(3)</td>
+			<td>eye(3)</td>
+			<td>LA.eye(3)</td>
+			<td>3x3 identity matrix</td>
+		</tr>
+		<tr>
+			<td>diag(a)</td>
+			<td>diag(a)</td>
+			<td>todo</td>
+			<td>vector of diagonal elements of a</td>
+		</tr>
+		<tr>
+			<td>diag(a,0)</td>
+			<td>diag(a,0)</td>
+			<td>todo</td>
+			<td>square diagonal matrix whose nonzero values are the elements of a</td>
+		</tr>
+		<tr>
+			<td>rand(3,4)</td>
+			<td>random.rand(3,4)</td>
+			<td>LA.rand(3,4)</td>
+			<td>random 3x4 matrix</td>
+		</tr>
+		<tr>
+			<td>linspace(1,3,4)</td>
+			<td>linspace(1,3,4)</td>
+			<td>todo</td>
+			<td>4 equally spaced samples between 1 and 3, inclusive</td>
+		</tr>
+		<tr>
+			<td>[x,y]=meshgrid(0:8,0:5)</td>
+			<td>mgrid[0:9.,0:6.] or meshgrid(r_[0:9.],r_[0:6.]</td>
+			<td>todo</td>
+			<td>two 2D arrays: one of x values, the other of y values</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>ogrid[0:9.,0:6.] or ix_(r_[0:9.],r_[0:6.]</td>
+			<td>todo</td>
+			<td>the best way to eval functions on a grid</td>
+		</tr>
+		<tr>
+			<td>[x,y]=meshgrid([1,2,4],[2,4,5])</td>
+			<td>meshgrid([1,2,4],[2,4,5])</td>
+			<td>todo</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>ix_([1,2,4],[2,4,5])</td>
+			<td>todo</td>
+			<td>the best way to eval functions on a grid</td>
+		</tr>
+		<tr>
+			<td>repmat(a, m, n)</td>
+			<td>tile(a, (m, n))</td>
+			<td>todo</td>
+			<td>create m by n copies of a</td>
+		</tr>
+		<tr>
+			<td>[a b]</td>
+			<td>concatenate((a,b),1) or hstack((a,b)) or column_stack((a,b)) or c_[a,b]</td>
+			<td>LA.concatenate( a,b, 1 ) or a.concatenate( b, 1 ) or LA.hstack( a, b )</td>
+			<td>concatenate columns of a and b</td>
+		</tr>
+		<tr>
+			<td>[a; b]</td>
+			<td>concatenate((a,b)) or vstack((a,b)) or r_[a,b]</td>
+			<td>LA.concatenate( a,b ) or a.concatenate( b ) or LA.vstack( a, b )</td>
+			<td>concatenate rows of a and b</td>
+		</tr>
+		<tr>
+			<td>max(max(a))</td>
+			<td>a.max()</td>
+			<td>todo</td>
+			<td>maximum element of a (with ndims(a)
+				&lt;= 2 for matlab)</td>
+		</tr>
+		<tr>
+			<td>max(a)</td>
+			<td>a.max(0)</td>
+			<td>todo</td>
+			<td>maximum element of each column of matrix a</td>
+		</tr>
+		<tr>
+			<td>max(a,[],2)</td>
+			<td>a.max(1)</td>
+			<td>todo</td>
+			<td>maximum element of each row of matrix a</td>
+		</tr>
+		<tr>
+			<td>max(a,b)</td>
+			<td>maximum(a, b)</td>
+			<td>todo</td>
+			<td>compares a and b element-wise, and returns the maximum value from each pair</td>
+		</tr>
+		<tr>
+			<td>norm(v)</td>
+			<td>sqrt(dot(v,v)) or np.linalg.norm(v)</td>
+			<td>todo</td>
+			<td>L2 norm of vector v</td>
+		</tr>
+		<tr>
+			<td>a & b</td>
+			<td>logical_and(a,b)</td>
+			<td>todo</td>
+			<td>element-by-element AND operator (Numpy ufunc) See note LOGICOPS</td>
+		</tr>
+		<tr>
+			<td>a | b </td>
+			<td>logical_or(a,b)</td>
+			<td>todo</td>
+			<td>element-by-element OR operator (Numpy ufunc) See note LOGICOPS</td>
+		</tr>
+		<tr>
+			<td>bitand(a,b)</td>
+			<td>a & b</td>
+			<td>todo</td>
+			<td>bitwise AND operator (Python native and Numpy ufunc)</td>
+		</tr>
+		<tr>
+			<td>bitor(a,b)</td>
+			<td>a | b</td>
+			<td>todo</td>
+			<td>bitwise OR operator (Python native and Numpy ufunc)</td>
+		</tr>
+		<tr>
+			<td>inv(a)</td>
+			<td>linalg.inv(a)</td>
+			<td>todo</td>
+			<td>inverse of square matrix a</td>
+		</tr>
+		<tr>
+			<td>pinv(a)</td>
+			<td>linalg.pinv(a)</td>
+			<td>todo</td>
+			<td>pseudo-inverse of matrix a</td>
+		</tr>
+		<tr>
+			<td>rank(a)</td>
+			<td>linalg.matrix_rank(a)</td>
+			<td>todo</td>
+			<td>matrix rank of a 2D array / matrix a</td>
+		</tr>
+		<tr>
+			<td>a\b</td>
+			<td>linalg.solve(a,b) if a is square; linalg.lstsq(a,b) otherwise</td>
+			<td>todo</td>
+			<td>solution of a x = b for x</td>
+		</tr>
+		<tr>
+			<td>b/a</td>
+			<td>Solve a.T x.T = b.T instead</td>
+			<td>todo</td>
+			<td>solution of x a = b for x</td>
+		</tr>
+		<tr>
+			<td>[U,S,V]=svd(a)</td>
+			<td>U, S, Vh = linalg.svd(a), V = Vh.T</td>
+			<td>todo</td>
+			<td>singular value decomposition of a</td>
+		</tr>
+		<tr>
+			<td>chol(a)</td>
+			<td>linalg.cholesky(a).T</td>
+			<td>todo</td>
+			<td>cholesky factorization of a matrix (chol(a) in matlab returns an upper triangular matrix, but linalg.cholesky(a) returns a lower triangular matrix)</td>
+		</tr>
+		<tr>
+			<td>[V,D]=eig(a)</td>
+			<td>D,V = linalg.eig(a)</td>
+			<td>todo</td>
+			<td>eigenvalues and eigenvectors of a</td>
+		</tr>
+		<tr>
+			<td>[V,D]=eig(a,b)</td>
+			<td>V,D = np.linalg.eig(a,b)</td>
+			<td>todo</td>
+			<td>eigenvalues and eigenvectors of a, b</td>
+		</tr>
+		<tr>
+			<td>[V,D]=eigs(a,k)</td>
+			<td></td>
+			<td>todo</td>
+			<td>find the k largest eigenvalues and eigenvectors of a</td>
+		</tr>
+		<tr>
+			<td>[Q,R,P]=qr(a,0)</td>
+			<td>Q,R = scipy.linalg.qr(a)</td>
+			<td>todo</td>
+			<td>QR decomposition</td>
+		</tr>
+		<tr>
+			<td>[L,U,P]=lu(a)</td>
+			<td>L,U = scipy.linalg.lu(a) or LU,P=scipy.linalg.lu_factor(a)</td>
+			<td>todo</td>
+			<td>LU decomposition (note: P(Matlab) == transpose(P(numpy)) )</td>
+		</tr>
+		<tr>
+			<td>conjgrad</td>
+			<td>scipy.sparse.linalg.cg</td>
+			<td>todo</td>
+			<td>Conjugate gradients solver</td>
+		</tr>
+		<tr>
+			<td>fft(a)</td>
+			<td>fft(a)</td>
+			<td>todo</td>
+			<td>Fourier transform of a</td>
+		</tr>
+		<tr>
+			<td>ifft(a)</td>
+			<td>ifft(a)</td>
+			<td>todo</td>
+			<td>inverse Fourier transform of a</td>
+		</tr>
+		<tr>
+			<td>sort(a)</td>
+			<td>sort(a) or a.sort()</td>
+			<td>todo</td>
+			<td>sort the matrix</td>
+		</tr>
+		<tr>
+			<td>[b,I] = sortrows(a,i)</td>
+			<td>I = argsort(a[:,i]), b=a[I,:]</td>
+			<td>todo</td>
+			<td>sort the rows of the matrix</td>
+		</tr>
+		<tr>
+			<td>regress(y,X)</td>
+			<td>linalg.lstsq(X,y)</td>
+			<td>todo</td>
+			<td>multilinear regression</td>
+		</tr>
+		<tr>
+			<td>decimate(x, q)</td>
+			<td>scipy.signal.resample(x, len(x)/q)</td>
+			<td>todo</td>
+			<td>downsample with low-pass filtering</td>
+		</tr>
+		<tr>
+			<td>unique(a)</td>
+			<td>unique(a)</td>
+			<td>todo</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>squeeze(a)</td>
+			<td>a.squeeze()</td>
+			<td>todo</td>
+			<td></td>
+		</tr>
+	</table>
 
-<p><a href="https://docs.scipy.org/doc/numpy-dev/user/numpy-for-matlab-users.html">Original feature matrix on scipy.org</a></p>
-<p>MATLAB® and SimuLink® are registered trademarks of The MathWorks.</p>
+	<p><a href="https://docs.scipy.org/doc/numpy-dev/user/numpy-for-matlab-users.html">Original feature matrix on scipy.org</a></p>
+	<p>MATLAB® and SimuLink® are registered trademarks of The MathWorks.</p>
 </body>
+
 </html>
